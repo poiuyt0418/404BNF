@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class player_Control : MonoBehaviour
+public class Player_Control : MonoBehaviour
 {
     public int x, y = 0;
     Vector3 velocity = Vector3.zero;
