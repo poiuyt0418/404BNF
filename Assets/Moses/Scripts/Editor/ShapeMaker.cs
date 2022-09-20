@@ -4,60 +4,89 @@ using System.Collections;
 
 public class ShapeMaker : EditorWindow
 {
-    int rectSizeX, rectSizeY;
+    float rectSizeX, rectSizeY, rectDiffX, rectDiffY;
     Stack mouseDot = new Stack();
-    [MenuItem("QTE/ShapeEditor")]
+    bool pressed = false;
+    Vector2 center;
+    Rect mouseRect;
+    SerializedObject shape;
+    float scalar = 1;
+    float border = 10;
+    //[MenuItem("QTE/ShapeEditor")]
     static void InitWindow()
     {
-        ShapeMaker window = (ShapeMaker)GetWindowWithRect(typeof(ShapeMaker), new Rect(0, 0, 750, 750));
-        window.Show();
+        //ShapeMaker window = (ShapeMaker)GetWindowWithRect(typeof(ShapeMaker), new Rect(0, 0, 750, 750));
+        //ShapeMaker window = (ShapeMaker)GetWindow(typeof(ShapeMaker),true,"Shape Maker");
+        //window.Show();
+        
     }
 
-    void OnEnable()
+    public void ShapeToChange(SerializedObject a)
     {
+        shape = a;
     }
 
-    Vector3[] DotToRect(Vector2 center, int size)
+    void Awake()
     {
-        int newSize = size / 2;
-        return new Vector3[] {
-            new Vector3(center.x - newSize, center.y - newSize, 0),
-            new Vector3(center.x + newSize, center.y - newSize, 0),
-            new Vector3(center.x + newSize, center.y + newSize, 0),
-            new Vector3(center.x - newSize, center.y + newSize, 0)
-        };
+
     }
 
     void OnGUI()
     {
-        //variableToggle = EditorGUILayout.Toggle("text", variableToggle);
-        rectSizeX = EditorGUILayout.DelayedIntField("Event Width", rectSizeX);
-        rectSizeY = EditorGUILayout.DelayedIntField("Event Height", rectSizeY);
-        Vector2 offset = new Vector2(position.width / 2, position.height / 2);
-        Handles.color = Color.white;
-        Vector3[] rect = new Vector3[] {
-            new Vector3(offset.x - rectSizeX/2, offset.y - rectSizeY/2, 0),
-            new Vector3(offset.x + rectSizeX/2, offset.y - rectSizeY/2, 0),
-            new Vector3(offset.x + rectSizeX/2, offset.y + rectSizeY/2, 0),
-            new Vector3(offset.x - rectSizeX/2, offset.y + rectSizeY/2, 0)
-        };
-        Handles.DrawSolidRectangleWithOutline(rect, Color.white, new Color(0, 0, 0, 1));
-        Handles.color = Color.black;
-        
-        Handles.DrawSolidRectangleWithOutline(DotToRect(offset, 5), Color.black, new Color(0, 0, 0, 1));
-        
-        Vector2 mousePos = Event.current.mousePosition - offset + new Vector2(rectSizeX/2, rectSizeY/2);
-        EditorGUILayout.LabelField("Mouse Position: ", mousePos.ToString());
-
-        if (Event.current.isMouse && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+        scalar = 1920 / position.width;
+        if (center == Vector2.zero)
         {
-            Debug.Log("clicked");
-            mouseDot.Push(DotToRect(new Vector2(Event.current.mousePosition.x, Event.current.mousePosition.y), 5));
+            Rect shapeRect = shape.FindProperty("shape").rectValue;
+            rectSizeX = shapeRect.width / scalar;
+            rectSizeY = shapeRect.height / scalar;
+            center = shapeRect.center / scalar;
+            mouseRect = new Rect(shapeRect.x / scalar + border, (shapeRect.y / scalar) + EditorGUIUtility.singleLineHeight * 4, rectSizeX, rectSizeY);
+            rectDiffX = (center.x - rectSizeX / 2) + border;
+            rectDiffY = (center.y - rectSizeY / 2) + EditorGUIUtility.singleLineHeight * 4;
+        }
+        //variableToggle = EditorGUILayout.Toggle("text", variableToggle);
+        bool mouseInBound = Event.current.mousePosition.y > EditorGUIUtility.singleLineHeight * 4;
+        //Bounds where shape can be made
+        EditorGUI.DrawRect(new Rect(border, EditorGUIUtility.singleLineHeight * 4, 1920/scalar, 1080/scalar), new Color(0.9f, 0.9f, 0.9f));
+        EditorGUIUtility.AddCursorRect(new Rect(border, EditorGUIUtility.singleLineHeight * 4, position.width, position.height), MouseCursor.Pan); 
+        EditorGUILayout.BeginHorizontal();
+        center.x = EditorGUILayout.DelayedFloatField("Center X", center.x);
+        center.y = EditorGUILayout.DelayedFloatField("Center Y", center.y);
+        EditorGUILayout.EndHorizontal(); 
+        EditorGUILayout.BeginHorizontal();
+        mouseRect.width = EditorGUILayout.DelayedFloatField("Shape Width", mouseRect.width);
+        mouseRect.height = EditorGUILayout.DelayedFloatField("Shape Height", mouseRect.height);
+        EditorGUILayout.EndHorizontal();
+        GUILayout.Space(5);
+        if (GUILayout.Button("Submit Shape", GUILayout.Width(100), GUILayout.Height(EditorGUIUtility.singleLineHeight)))
+        {
+            shape.FindProperty("shape").rectValue = new Rect((mouseRect.x - border) * scalar, (mouseRect.y - EditorGUIUtility.singleLineHeight * 4) * scalar, mouseRect.width * scalar, mouseRect.height * scalar);
+            shape.ApplyModifiedProperties();
+        }
+        if (Event.current.isMouse && Event.current.type == EventType.MouseDown && Event.current.button == 0 && !pressed && mouseInBound)
+        {
+            pressed = true;
+            center = new Vector2(Event.current.mousePosition.x, Event.current.mousePosition.y);
+            
+        } else if(pressed)
+        {
+            if(mouseInBound)
+            {
+                if (Event.current.isMouse && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+                {
+                    pressed = false;
+                }
+                rectSizeX = Mathf.Abs(Event.current.mousePosition.x - center.x) * 2;
+                rectSizeY = Mathf.Abs(Event.current.mousePosition.y - center.y) * 2;
+                rectDiffX = center.x - Mathf.Abs(Event.current.mousePosition.x - center.x);
+                rectDiffY = center.y - Mathf.Abs(Event.current.mousePosition.y - center.y);
+                
+            }
+            //Handles.DrawSolidRectangleWithOutline((Vector3[])mouseDot.Peek(), Color.black, new Color(0, 0, 0, 1));
             Repaint();
         }
-        if(mouseDot.Count > 0)
-        {
-            Handles.DrawSolidRectangleWithOutline((Vector3[])mouseDot.Peek(), Color.black, new Color(0, 0, 0, 1));
-        }
+        mouseRect = new Rect(rectDiffX+border, rectDiffY, rectSizeX, rectSizeY);
+        //mouseRect = new Rect(center.x, center.y, rectSizeX, rectSizeY);
+        EditorGUI.DrawRect(mouseRect, new Color(0.9f, 0f, 0.9f));
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
@@ -14,11 +15,11 @@ public class ShapeEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        Shape shape = (Shape)target;
         if(GUILayout.Button("Create Shape"))
         {
-            ShapeMaker window = (ShapeMaker)EditorWindow.GetWindow(typeof(ShapeMaker), false, "a");
-            window.Show();
+            ShapeMaker window = (ShapeMaker)EditorWindow.GetWindow(typeof(ShapeMaker),false, "Shape Maker");
+            window.ShapeToChange(serializedObject);
+            //ShapeMaker window = EditorWindow.GetWindow<ShapeMaker>(typeof(Editor).Assembly.GetType("UnityEditor.InspectorWindow"));
         }
     }
 }

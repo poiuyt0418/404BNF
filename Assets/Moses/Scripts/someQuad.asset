@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9878d34af08a26f4abe1f01e3e9d6814, type: 3}
   m_Name: someQuad
   m_EditorClassIdentifier: Assembly-CSharp::shape
-  ShapeCorners:
-  - {x: 100, y: 100}
-  - {x: 200, y: 200}
-  - {x: 200, y: -100}
-  - {x: -100, y: -100}
+  shape:
+    serializedVersion: 2
+    x: 231
+    y: 239
+    width: 296
+    height: 256
   offsetXY: {x: 0, y: 0}

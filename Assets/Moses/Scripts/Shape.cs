@@ -3,19 +3,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Shape")]
 public class Shape : ScriptableObject
 {
-    [Tooltip("x,y of each corner")]
-    public Vector2[] ShapeCorners;
-    public Vector2 offsetXY = Vector2.zero;
-    public Vector2 Offset()
+    [Tooltip("Enclosing Rectangle of the Shape")]
+    public Rect shape;
+
+    public Vector2 Center()
     {
-        return offsetXY+new Vector2(Screen.width/2,Screen.height/2);
+        return shape.center;
     }
-    public Vector2 Min()
+    public Vector2 StartCorner()
     {
-        return new Vector2(ShapeCorners[3].x, ShapeCorners[3].y);
+        return shape.min;
     }
-    public Vector2 Max()
+    public Vector2 EndCorner()
     {
-        return new Vector2(ShapeCorners[1].x, ShapeCorners[1].y);
+        return shape.max;
     }
 }

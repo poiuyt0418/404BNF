@@ -26,10 +26,10 @@ public class World_QTEManager : MonoBehaviour
         Shape shape = qte.qteScreenSpace;
         GameObject background = Instantiate(qte.backgroundImage) as GameObject;
         background.transform.SetParent(canvas.transform, false);
-        background.transform.position = new Vector3(shape.Offset().x + (shape.Min().x + shape.Max().x)/2, shape.Offset().y + (shape.Min().y + shape.Max().y) / 2, 0);
+        background.transform.position = shape.Center();
         for (int i = 0; i < events; i++)
         {
-            coords[i] = new Vector2(Random.Range(shape.Offset().x + shape.Min().x, shape.Offset().x + shape.Max().x),Random.Range(shape.Offset().y + shape.Min().y, shape.Offset().y + shape.Max().y));
+            coords[i] = new Vector2(Random.Range(shape.StartCorner().x, shape.EndCorner().x),Random.Range(shape.StartCorner().y, shape.EndCorner().y));
             GameObject button = Instantiate(qteImage) as GameObject;
             button.transform.SetParent(canvas.transform, false);
             button.transform.position = new Vector3(coords[i].x, coords[i].y,0);
