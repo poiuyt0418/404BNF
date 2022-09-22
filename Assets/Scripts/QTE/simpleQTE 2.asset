@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c28abe82972599240bd28e6a5d0c2a86, type: 3}
-  m_Name: simpleQTE
+  m_Name: simpleQTE 2
   m_EditorClassIdentifier: 
   qteType: 
   backgroundImage: {fileID: 6330457919747519939, guid: a040f83431019b14ebb07026ddd35bbe, type: 3}
   qteImage: {fileID: 2576057307018721422, guid: 86fa152e19b8c3745b6d9b9d33494c9f, type: 3}
-  numPress: 5
-  qteDuration: 3
-  qteScreenSpace: {fileID: 11400000, guid: 669ad9e0bc4e49c4894a9cea65918df8, type: 2}
+  numPress: 3
+  qteDuration: 2
+  qteScreenSpace: {fileID: 11400000, guid: c682e0a317479264a933946926f29812, type: 2}

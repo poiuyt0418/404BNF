@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::shape
   shape:
     serializedVersion: 2
-    x: 0
-    y: -5.533141
-    width: 60.86455
-    height: 27.665707
+    x: 749.7406
+    y: 257.29108
+    width: 403.9193
+    height: 359.65417
