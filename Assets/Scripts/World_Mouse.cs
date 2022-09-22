@@ -18,8 +18,7 @@ public class World_Mouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         //if (plane.raycast(ray, out distance))
         //{
         //    mousetoworld = ray.getpoint(distance);

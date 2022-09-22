@@ -7,7 +7,7 @@ public class QTE_ScriptableObject : ScriptableObject
     [Tooltip("-List types of qte in the game")]
     public string qteType;
     public GameObject backgroundImage;
-
+    public GameObject qteImage;
     public int numPress;
     public int qteDuration;
     public Shape qteScreenSpace;

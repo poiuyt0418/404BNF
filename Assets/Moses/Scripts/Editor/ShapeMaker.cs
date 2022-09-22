@@ -85,7 +85,7 @@ public class ShapeMaker : EditorWindow
             //Handles.DrawSolidRectangleWithOutline((Vector3[])mouseDot.Peek(), Color.black, new Color(0, 0, 0, 1));
             Repaint();
         }
-        mouseRect = new Rect(rectDiffX+border, rectDiffY, rectSizeX, rectSizeY);
+        mouseRect = new Rect(rectDiffX, rectDiffY, rectSizeX, rectSizeY);
         //mouseRect = new Rect(center.x, center.y, rectSizeX, rectSizeY);
         EditorGUI.DrawRect(mouseRect, new Color(0.9f, 0f, 0.9f));
     }
