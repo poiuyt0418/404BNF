@@ -20,14 +20,26 @@ public class World_Mouse : MonoBehaviour
     {
         float distance;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (plane.Raycast(ray, out distance))
+        //if (plane.raycast(ray, out distance))
+        //{
+        //    mousetoworld = ray.getpoint(distance);
+        //    mousetoworld = new vector3(mathf.round(mousetoworld.x),mathf.round(mousetoworld.y),mathf.round(mousetoworld.z));
+        //}
+
+        //if (plane.Raycast(ray, out distance))
+        //{
+        //    mouseToWorld = ray.GetPoint(distance);
+        //    mouseToWorld = new Vector3(Mathf.Round(mouseToWorld.x), Mathf.Round(mouseToWorld.y), Mathf.Round(mouseToWorld.z));
+        //}
+        if (Input.GetMouseButtonDown(0))
         {
-            mouseToWorld = ray.GetPoint(distance);
-            mouseToWorld = new Vector3(Mathf.Round(mouseToWorld.x),Mathf.Round(mouseToWorld.y),Mathf.Round(mouseToWorld.z));
-        }
-        if(Input.GetMouseButtonDown(0))
-        {
-            player.Move(mouseToWorld);
+            RaycastHit hit;
+            //player.Move(mouseToWorld);
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+            {
+                mouseToWorld = hit.point;
+                player.Move(hit.point);
+            }
         }
 
     }
