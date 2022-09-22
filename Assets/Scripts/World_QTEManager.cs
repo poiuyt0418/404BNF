@@ -66,6 +66,7 @@ public class World_QTEManager : MonoBehaviour
             }
             else
             {
+                Destroy(background);
                 duration = 0;
             }
         }

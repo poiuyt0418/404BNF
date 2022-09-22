@@ -50,12 +50,12 @@ public class ShapeMaker : EditorWindow
         EditorGUI.DrawRect(new Rect(border, EditorGUIUtility.singleLineHeight * 4, 1920/scalar, 1080/scalar), new Color(0.9f, 0.9f, 0.9f));
         EditorGUIUtility.AddCursorRect(new Rect(border, EditorGUIUtility.singleLineHeight * 4, position.width, position.height), MouseCursor.Pan); 
         EditorGUILayout.BeginHorizontal();
-        center.x = EditorGUILayout.DelayedFloatField("Center X", center.x);
-        center.y = EditorGUILayout.DelayedFloatField("Center Y", center.y);
+        rectDiffX = EditorGUILayout.DelayedFloatField("Center X", rectDiffX);
+        rectDiffY = EditorGUILayout.DelayedFloatField("Center Y", rectDiffY);
         EditorGUILayout.EndHorizontal(); 
         EditorGUILayout.BeginHorizontal();
-        mouseRect.width = EditorGUILayout.DelayedFloatField("Shape Width", mouseRect.width);
-        mouseRect.height = EditorGUILayout.DelayedFloatField("Shape Height", mouseRect.height);
+        rectSizeX = EditorGUILayout.DelayedFloatField("Shape Width", rectSizeX);
+        rectSizeY = EditorGUILayout.DelayedFloatField("Shape Height", rectSizeY);
         EditorGUILayout.EndHorizontal();
         GUILayout.Space(5);
         if (GUILayout.Button("Submit Shape", GUILayout.Width(100), GUILayout.Height(EditorGUIUtility.singleLineHeight)))
