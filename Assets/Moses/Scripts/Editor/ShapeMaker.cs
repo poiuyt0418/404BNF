@@ -33,21 +33,22 @@ public class ShapeMaker : EditorWindow
 
     void OnGUI()
     {
-        scalar = 1920 / position.width;
+        scalar = (position.width - border) / 1920;
+        //Bounds where shape should be made
+        Rect boundRect = new Rect(border, EditorGUIUtility.singleLineHeight * 4, 1920 * scalar, 1080 * scalar);
         if (center == Vector2.zero)
         {
             Rect shapeRect = shape.FindProperty("shape").rectValue;
-            rectSizeX = shapeRect.width / scalar;
-            rectSizeY = shapeRect.height / scalar;
-            center = shapeRect.center / scalar;
-            mouseRect = new Rect(shapeRect.x / scalar + border, (shapeRect.y / scalar) + EditorGUIUtility.singleLineHeight * 4, rectSizeX, rectSizeY);
-            rectDiffX = (center.x - rectSizeX / 2) + border;
-            rectDiffY = (center.y - rectSizeY / 2) + EditorGUIUtility.singleLineHeight * 4;
+            rectSizeX = shapeRect.width * boundRect.width;
+            rectSizeY = shapeRect.height * boundRect.height;
+            center = new Vector2(shapeRect.center.x * boundRect.width + border, shapeRect.center.y * boundRect.height + EditorGUIUtility.singleLineHeight * 4);
+            //mouseRect = new Rect(shapeRect.x / boundRect.width + border, (shapeRect.y / boundRect.height) + EditorGUIUtility.singleLineHeight * 4, rectSizeX, rectSizeY);
+            rectDiffX = center.x - rectSizeX / 2;
+            rectDiffY = center.y - rectSizeY / 2;
         }
         //variableToggle = EditorGUILayout.Toggle("text", variableToggle);
         bool mouseInBound = Event.current.mousePosition.y > EditorGUIUtility.singleLineHeight * 4;
-        //Bounds where shape can be made
-        EditorGUI.DrawRect(new Rect(border, EditorGUIUtility.singleLineHeight * 4, 1920/scalar, 1080/scalar), new Color(0.9f, 0.9f, 0.9f));
+        EditorGUI.DrawRect(boundRect, new Color(0.9f, 0.9f, 0.9f));
         EditorGUIUtility.AddCursorRect(new Rect(border, EditorGUIUtility.singleLineHeight * 4, position.width, position.height), MouseCursor.Pan); 
         EditorGUILayout.BeginHorizontal();
         rectDiffX = EditorGUILayout.DelayedFloatField("Center X", rectDiffX);
@@ -60,7 +61,7 @@ public class ShapeMaker : EditorWindow
         GUILayout.Space(5);
         if (GUILayout.Button("Submit Shape", GUILayout.Width(100), GUILayout.Height(EditorGUIUtility.singleLineHeight)))
         {
-            shape.FindProperty("shape").rectValue = new Rect((mouseRect.x - border) * scalar, (mouseRect.y - EditorGUIUtility.singleLineHeight * 4) * scalar, mouseRect.width * scalar, mouseRect.height * scalar);
+            shape.FindProperty("shape").rectValue = new Rect((mouseRect.x - border) / boundRect.width, (mouseRect.y - EditorGUIUtility.singleLineHeight * 4) / boundRect.height, mouseRect.width / boundRect.width, mouseRect.height / boundRect.height);
             shape.ApplyModifiedProperties();
         }
         if (Event.current.isMouse && Event.current.type == EventType.MouseDown && Event.current.button == 0 && !pressed && mouseInBound)

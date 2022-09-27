@@ -181,5 +181,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f0a5d79074aad46b307abf48a9034f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
-  qteImage: {fileID: 2576057307018721422, guid: 86fa152e19b8c3745b6d9b9d33494c9f, type: 3}
+  canvas: {fileID: 968985385509024593, guid: 7ab1b080defe12e46bed6a1a38834d1d, type: 3}

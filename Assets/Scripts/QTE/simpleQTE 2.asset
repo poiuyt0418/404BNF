@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   qteType: 
   backgroundImage: {fileID: 6330457919747519939, guid: a040f83431019b14ebb07026ddd35bbe, type: 3}
-  qteImage: {fileID: 2576057307018721422, guid: 86fa152e19b8c3745b6d9b9d33494c9f, type: 3}
+  qteImage: {fileID: 8574680183842262234, guid: 98f6c44d041457443afab0ce81b86f8e, type: 3}
   numPress: 3
   qteDuration: 2
   qteScreenSpace: {fileID: 11400000, guid: c682e0a317479264a933946926f29812, type: 2}
