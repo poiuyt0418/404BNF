@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class World_QTEManager : MonoBehaviour
 {
@@ -8,13 +10,23 @@ public class World_QTEManager : MonoBehaviour
     public GameObject canvas;
     public Camera canvasCamera;
     GameObject currQTE;
-    GameObject qteImage;
+    string[] indexes = { "press", "drag", "hold" };
+    public GameObject[] qteEvents;
     GameObject background;
-    int duration;
+    string type;
+    float duration, holdDuration;
+    Vector2 target;
     float timer = 0;
-    Stack coords = new Stack();
+    Stack qteStack = new Stack();
     int screenWidth = 1920, screenHeight = 1080;
     // Start is called before the first frame update
+    class QTEInstance
+    {
+        string name;
+        Vector2 position;
+        public string type { get { return name; } set { name = value; } }
+        public Vector2 coord { get { return position; } set { position = value; } }
+    }
     void Start()
     {
 
@@ -29,19 +41,25 @@ public class World_QTEManager : MonoBehaviour
     {
         int events = qte.amount;
         duration = qte.duration;
+        type = qte.type;
+        target = qte.direction;
+        holdDuration = qte.holdFor;
         Shape shape = qte.space;
-        qteImage = qte.image;
+        //qteImage = qte.image;
         background = Instantiate(qte.background) as GameObject; 
         background.transform.SetParent(canvas.transform, false);
         //background.transform.position = canvasCamera.ScreenToViewportPoint(new Vector3(shape.Center().x * Screen.width, Screen.height - shape.Center().y * Screen.height));
         //RectTransform backgroundRect = background.GetComponent<RectTransform>();
         //Debug.Log(new Vector3((shape.Center().x-.5f) * screenWidth, (shape.Center().y-.5f) * -screenHeight));
         //background.GetComponent<RectTransform>().localPosition = canvasCamera.ScreenToViewportPoint(new Vector3(shape.Center().x * Screen.width, Screen.height - shape.Center().y * Screen.height));
-        background.GetComponent<RectTransform>().localPosition = new Vector3((shape.Center().x - .5f) * 1920, (shape.Center().y - .5f) * -1080);
+        background.GetComponent<RectTransform>().localPosition = new Vector3((shape.Center().x - .5f) * screenWidth, (shape.Center().y - .5f) * -screenHeight);
         for (int i = 0; i < events; i++)
         {
-            //coords.Push(canvasCamera.ScreenToViewportPoint(new Vector2(Random.Range(shape.StartCorner().x, shape.EndCorner().x) * Screen.width, Screen.height - Random.Range(shape.StartCorner().y, shape.EndCorner().y) * Screen.height)));
-            coords.Push(new Vector2(Random.Range(shape.StartCorner().x, shape.EndCorner().x), 1 - Random.Range(shape.StartCorner().y, shape.EndCorner().y)));
+            QTEInstance instance = new QTEInstance();
+            instance.type = type;
+            instance.coord = new Vector2(Random.Range(shape.StartCorner().x, shape.EndCorner().x), 1 - Random.Range(shape.StartCorner().y, shape.EndCorner().y));
+            //qteStack.Push(canvasCamera.ScreenToViewportPoint(new Vector2(Random.Range(shape.StartCorner().x, shape.EndCorner().x) * Screen.width, Screen.height - Random.Range(shape.StartCorner().y, shape.EndCorner().y) * Screen.height)));
+            qteStack.Push(instance);
         }
     }
 
@@ -61,17 +79,19 @@ public class World_QTEManager : MonoBehaviour
             {
                 Debug.Log("a");
                 //durability -x% for each missed qte
+                Cursor.visible = true;
                 Destroy(currQTE);
             }
-            if (coords.Count > 0)
+            if (qteStack.Count > 0)
             {
                 timer = duration + Time.time;
-                Vector2 currPos = (Vector2)coords.Pop();
-                Vector3 currButton = new Vector3((currPos.x - .5f) * screenWidth, (currPos.y - .5f) * -screenHeight, -1);
-                currQTE = Instantiate(qteImage) as GameObject;
-                //Debug.Log(currButton);
+                QTEInstance instance = (QTEInstance)qteStack.Pop();
+                Vector2 currPos = instance.coord;
+                Vector3 currButton = new Vector3((currPos.x - .5f) * screenWidth, (currPos.y - .5f) * screenHeight, -1);
+                currQTE = Instantiate(qteEvents[Array.IndexOf(indexes, instance.type)]) as GameObject;
+                currQTE.GetComponent<QTE_Button>().duration = holdDuration;
+                currQTE.GetComponent<QTE_Button>().targetPos = target;
                 currQTE.transform.SetParent(canvas.transform, false);
-                //currQTE.transform.position = currButton;
                 currQTE.GetComponent<RectTransform>().localPosition = currButton;
             }
             else

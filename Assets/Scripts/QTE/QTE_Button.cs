@@ -4,25 +4,12 @@ using UnityEngine;
 
 public class QTE_Button : MonoBehaviour
 {
+    public float duration;
+    public Vector2 targetPos;
     // Start is called before the first frame update
-    void Start()
+    protected void Succeed()
     {
-        
-    }
-
-    public void Clicked()
-    {
+        Cursor.visible = true;
         Destroy(gameObject);
-    }
-
-    private void OnMouseDown()
-    {
-        print("asd");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
