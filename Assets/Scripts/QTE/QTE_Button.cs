@@ -6,10 +6,12 @@ public class QTE_Button : MonoBehaviour
 {
     public float duration;
     public Vector2 targetPos;
+    protected GameObject indicator;
     // Start is called before the first frame update
-    protected void Succeed()
+    public void Succeed()
     {
         Cursor.visible = true;
+        Destroy(indicator);
         Destroy(gameObject);
     }
 }
