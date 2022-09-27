@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e050ae7787a349c48b54b3eb32bfadd0
+guid: 0c187f3ad52092f4fb3e44b6b65ef5e3
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: d52a81d8778012a4185f1de0b967213e, type: 2}
+      name: Antennae
+    second: {fileID: 2100000, guid: b89513ce373f7944086490f41905eddf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lights
+    second: {fileID: 2100000, guid: 7120aec9eb7d50546a4d7dd1682d4b40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Panel_Base
+    second: {fileID: 2100000, guid: 88fe17e4e70457b4da804aa80b65c451, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ScreenDisplay
+    second: {fileID: 2100000, guid: 054e32efd71c4d3479f0da821b1313ca, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

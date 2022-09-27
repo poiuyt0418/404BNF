@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e050ae7787a349c48b54b3eb32bfadd0
+guid: 961c9b00e8720674fab54041c2c0f2a7
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: d52a81d8778012a4185f1de0b967213e, type: 2}
+      name: BigButtonMat
+    second: {fileID: 2100000, guid: 1b621b22110b55347bdbd9858e85bd43, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DisplayMat
+    second: {fileID: 2100000, guid: 8b5be87da5b336544aa2a9ada6545ff6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Panel_Base
+    second: {fileID: 2100000, guid: e454f878663a1d944a3495b58978f312, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RoundButtonsMat
+    second: {fileID: 2100000, guid: a87e8b6972575614e936c34fb8a1dbaf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TopButtons_Mat
+    second: {fileID: 2100000, guid: f886c9adc9c7d704ba74a2eba44390c2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

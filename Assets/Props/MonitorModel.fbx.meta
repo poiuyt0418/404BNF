@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e050ae7787a349c48b54b3eb32bfadd0
+guid: f120f9f6d13f17e42890449723651952
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: ScreenMat
+    second: {fileID: 2100000, guid: 83049a5d687618e49beaf4703a90d6b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: lambert1
-    second: {fileID: 2100000, guid: d52a81d8778012a4185f1de0b967213e, type: 2}
+    second: {fileID: 2100000, guid: 422350665ee2a4040b41af65cc6b8e98, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
