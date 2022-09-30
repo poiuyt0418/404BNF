@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Random QTE
   m_EditorClassIdentifier: 
   qteType: 3
-  backgroundImage: {fileID: 6330457919747519939, guid: a040f83431019b14ebb07026ddd35bbe, type: 3}
+  backgroundImage: {fileID: 919132149155446097, guid: 06408eba69c3f9a4e908b92715d900aa, type: 3}
   qteImage: {fileID: 0}
   numPress: 3
   qteDuration: 3

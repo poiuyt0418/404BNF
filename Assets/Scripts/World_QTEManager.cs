@@ -14,11 +14,13 @@ public class World_QTEManager : MonoBehaviour
     public GameObject[] qteEvents;
     GameObject background;
     string type;
-    float duration, holdDuration;
+    float duration, holdDuration, durability;
+    int events;
     Vector2 target;
     float timer = 0;
     Stack qteStack = new Stack();
     int screenWidth = 1920, screenHeight = 1080;
+    Player_Control player;
     // Start is called before the first frame update
     class QTEInstance
     {
@@ -27,9 +29,11 @@ public class World_QTEManager : MonoBehaviour
         public string type { get { return name; } set { name = value; } }
         public Vector2 coord { get { return position; } set { position = value; } }
     }
+
     void Start()
     {
-
+        if (player == null)
+            player = UnityEngine.Object.FindObjectsOfType<Player_Control>()[0];
     }
 
     public void TriggerQTE(QTE_ScriptableObject triggered)
@@ -39,7 +43,7 @@ public class World_QTEManager : MonoBehaviour
 
     void runQTE()
     {
-        int events = qte.amount;
+        events = qte.amount;
         duration = qte.duration;
         type = qte.type;
         target = qte.direction;
@@ -51,8 +55,10 @@ public class World_QTEManager : MonoBehaviour
         //background.transform.position = canvasCamera.ScreenToViewportPoint(new Vector3(shape.Center().x * Screen.width, Screen.height - shape.Center().y * Screen.height));
         //RectTransform backgroundRect = background.GetComponent<RectTransform>();
         //Debug.Log(new Vector3((shape.Center().x-.5f) * screenWidth, (shape.Center().y-.5f) * -screenHeight));
-        //background.GetComponent<RectTransform>().localPosition = canvasCamera.ScreenToViewportPoint(new Vector3(shape.Center().x * Screen.width, Screen.height - shape.Center().y * Screen.height));
-        background.GetComponent<RectTransform>().localPosition = new Vector3((shape.Center().x - .5f) * screenWidth, (shape.Center().y - .5f) * -screenHeight);
+        //background.GetComponent<RectTransform>().localPosition = new Vector3((shape.Center().x - .5f) * screenWidth, (shape.Center().y - .5f) * -screenHeight);
+        background.transform.localScale = Vector3.one * 5000;
+        background.layer = 5;
+        background.transform.localPosition = new Vector3((shape.Center().x - .5f) * screenWidth, (shape.Center().y - .5f) * -screenHeight,10f);
         for (int i = 0; i < events; i++)
         {
             QTEInstance instance = new QTEInstance();
@@ -64,6 +70,7 @@ public class World_QTEManager : MonoBehaviour
                 instance.type = type;
             }
             instance.coord = new Vector2(Random.Range(shape.StartCorner().x, shape.EndCorner().x), 1 - Random.Range(shape.StartCorner().y, shape.EndCorner().y));
+            durability = 100;
             //qteStack.Push(canvasCamera.ScreenToViewportPoint(new Vector2(Random.Range(shape.StartCorner().x, shape.EndCorner().x) * Screen.width, Screen.height - Random.Range(shape.StartCorner().y, shape.EndCorner().y) * Screen.height)));
             qteStack.Push(instance);
         }
@@ -74,6 +81,7 @@ public class World_QTEManager : MonoBehaviour
     {
         if (qte != null)
         {
+            player.MoveDisable();
             //run qte function, move it to a new script?
             runQTE();
             Debug.Log("qte was triggered");
@@ -84,7 +92,7 @@ public class World_QTEManager : MonoBehaviour
             if (currQTE != null)
             {
                 Debug.Log("a");
-                //durability -x% for each missed qte
+                durability -= 100f / events;
                 Cursor.visible = true;
                 Destroy(currQTE);
             }
@@ -96,13 +104,15 @@ public class World_QTEManager : MonoBehaviour
                 Vector3 currButton = new Vector3((currPos.x - .5f) * screenWidth, (currPos.y - .5f) * screenHeight, -1);
                 currQTE = Instantiate(qteEvents[Array.IndexOf(indexes, instance.type)]) as GameObject;
                 currQTE.GetComponent<QTE_Button>().duration = holdDuration;
-                currQTE.GetComponent<QTE_Button>().targetPos = (type=="random")?new Vector2(Random.Range(-1f,1f), Random.Range(-1f, 1f)):target;
+                currQTE.GetComponent<QTE_Button>().targetPos = (type == "random") ? new Vector2(Random.Range(1f, 2f) * (Random.Range(0, 1) * 2 - 1), Random.Range(1f, 2f) * (Random.Range(0, 1) * 2 - 1)) : target;
                 currQTE.transform.SetParent(canvas.transform, false);
                 currQTE.GetComponent<RectTransform>().localPosition = currButton;
             }
             else
             {
+                player.MoveEnable();
                 Destroy(background);
+                //give part
                 duration = 0;
             }
         }

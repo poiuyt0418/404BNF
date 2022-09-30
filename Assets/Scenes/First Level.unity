@@ -793,6 +793,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf89d7ce2ec04c448a884ffd4912471b, type: 3}
+--- !u!1 &392180992 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bf89d7ce2ec04c448a884ffd4912471b, type: 3}
+  m_PrefabInstance: {fileID: 392180991}
+  m_PrefabAsset: {fileID: 0}
+--- !u!208 &392180993
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392180992}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.33100003, y: 0.559, z: 0.039}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: -0.004}
+  m_TimeToStationary: 0.5
 --- !u!1001 &447363874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2619,7 +2640,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2000331930, guid: 1e64bb721079f214298702794a2eba05, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e64bb721079f214298702794a2eba05, type: 3}
 --- !u!1001 &1087791491
 PrefabInstance:
@@ -3959,7 +3981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df74ada442394914ba9c695ad58f459e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  qte: {fileID: 11400000, guid: 38558349c8dc45748a5b11ab6692580a, type: 2}
+  qte: {fileID: 11400000, guid: 51b013ecda67c9a4cad465d43bf8f416, type: 2}
   manager: {fileID: 1236578925}
 --- !u!1 &1594766672
 GameObject:
