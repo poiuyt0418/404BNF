@@ -8,7 +8,7 @@ public class QTE_ScriptableObject : ScriptableObject
     [SerializeField]
     QTEType qteType;
     [SerializeField]
-    GameObject backgroundImage, qteImage;
+    GameObject backgroundImage;
     [SerializeField]
     int numPress, qteDuration;
     [SerializeField]
@@ -21,10 +21,6 @@ public class QTE_ScriptableObject : ScriptableObject
     public GameObject background
     {
         get { return backgroundImage; }
-    }
-    public GameObject image
-    {
-        get { return qteImage; }
     }
     public int amount
     {

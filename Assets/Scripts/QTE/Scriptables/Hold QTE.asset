@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Hold QTE
   m_EditorClassIdentifier: 
   qteType: 2
-  backgroundImage: {fileID: 6330457919747519939, guid: a040f83431019b14ebb07026ddd35bbe, type: 3}
-  qteImage: {fileID: 0}
+  backgroundImage: {fileID: 919132149155446097, guid: 38597848a39c03443852bca57a67b567, type: 3}
   numPress: 2
   qteDuration: 3
   holdDuration: 1
