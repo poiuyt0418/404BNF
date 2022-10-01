@@ -46,7 +46,8 @@ public class Player_Control : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
         {
-            Move(hit.point);
+            if (hit.collider.tag != "Player")
+                Move(hit.point);
         }
     }
 
