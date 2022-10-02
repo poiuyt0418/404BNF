@@ -11,7 +11,7 @@ public class Player_Control : MonoBehaviour
     Vector3 mouseToWorld;
     public float speed = 5;
     //public Rigidbody rb;
-    NavMeshAgent movementControl;
+    public NavMeshAgent movementControl;
     PlayerInput controls;
     // Start is called before the first frame update
     void Start()
