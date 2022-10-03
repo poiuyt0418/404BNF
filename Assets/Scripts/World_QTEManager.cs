@@ -21,6 +21,8 @@ public class World_QTEManager : MonoBehaviour
     Stack qteStack = new Stack();
     int screenWidth = 1920, screenHeight = 1080;
     Player_Control player;
+    string partType;
+    Part part;
     // Start is called before the first frame update
     class QTEInstance
     {
@@ -36,9 +38,10 @@ public class World_QTEManager : MonoBehaviour
             player = UnityEngine.Object.FindObjectsOfType<Player_Control>()[0];
     }
 
-    public void TriggerQTE(QTE_ScriptableObject triggered)
+    public void TriggerQTE(QTE_ScriptableObject triggered, string part)
     {
         qte = triggered;
+        partType = part;
     }
 
     void runQTE()
@@ -92,8 +95,7 @@ public class World_QTEManager : MonoBehaviour
         {
             if (currQTE != null)
             {
-                Debug.Log("a");
-                durability -= 100f / events;
+                durability -= 100f / (events+1);
                 Cursor.visible = true;
                 Destroy(currQTE);
             }
@@ -111,9 +113,13 @@ public class World_QTEManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("a");
                 player.MoveEnable();
                 Destroy(background);
-                //give part
+                part = new Part();
+                part.name = partType;
+                part.dur = durability;
+                player.AddPart(part);
                 duration = 0;
             }
         }

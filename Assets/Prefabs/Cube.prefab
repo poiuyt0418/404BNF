@@ -131,6 +131,10 @@ MonoBehaviour:
   x: 0
   y: 0
   speed: 5
+  movementControl: {fileID: 0}
+  body: {fileID: 0}
+  arm: {fileID: 0}
+  leg: {fileID: 0}
 --- !u!195 &7370117794243796123
 NavMeshAgent:
   m_ObjectHideFlags: 0

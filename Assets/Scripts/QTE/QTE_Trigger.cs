@@ -6,6 +6,7 @@ public class QTE_Trigger : MonoBehaviour
 {
     public QTE_ScriptableObject qte;
     public World_QTEManager manager;
+    public string partType;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,7 @@ public class QTE_Trigger : MonoBehaviour
 
     void OnTriggerEnter()
     {
-        manager.TriggerQTE(qte);
+        manager.TriggerQTE(qte, partType);
         Destroy(gameObject);
         TriggerEffect();
     }

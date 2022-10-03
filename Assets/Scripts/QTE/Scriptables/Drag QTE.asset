@@ -15,7 +15,7 @@ MonoBehaviour:
   qteType: 1
   backgroundImage: {fileID: 919132149155446097, guid: 06408eba69c3f9a4e908b92715d900aa, type: 3}
   numPress: 3
-  qteDuration: 20
+  qteDuration: 5
   holdDuration: 0
   xy: {x: 2, y: -1}
   qteScreenSpace: {fileID: 11400000, guid: c682e0a317479264a933946926f29812, type: 2}

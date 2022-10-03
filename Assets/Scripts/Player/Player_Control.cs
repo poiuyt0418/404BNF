@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,12 +14,19 @@ public class Player_Control : MonoBehaviour
     //public Rigidbody rb;
     public NavMeshAgent movementControl;
     PlayerInput controls;
+    Part[] parts = new Part[3];
+    string[] partIndexes = { "body", "arm", "leg" };
+    Bar_Control[] partBars = new Bar_Control[3];
+    public Bar_Control body, arm, leg;
     // Start is called before the first frame update
     void Start()
     {
         movementControl = GetComponent<NavMeshAgent>();
         movementControl.updatePosition = false;
         movementControl.speed = speed;
+        partBars[0] = body;
+        partBars[1] = arm;
+        partBars[2] = leg;
         MoveEnable();
         //if(rb==null)
         //    rb = GetComponent<Rigidbody>();
@@ -40,6 +48,25 @@ public class Player_Control : MonoBehaviour
     {
         controls.Player.Disable();
     }
+
+    public void AddPart(Part part)
+    {
+        parts[Array.IndexOf(partIndexes, part.name)] = part;
+        parts[1] = part;
+        partBars[Array.IndexOf(partIndexes, part.name)].SetValue();
+    }
+
+    public float PartDurability(string type)
+    {
+        if (parts[Array.IndexOf(partIndexes, type)] != null)
+        {
+            return parts[Array.IndexOf(partIndexes, type)].dur;
+        } else
+        {
+            return 0;
+        }
+    }
+
 
     void ClickToMove()
     {
