@@ -17,17 +17,18 @@ public class Door : MonoBehaviour
     void Start()
     {
         player = Object.FindObjectsOfType<Player_Control>()[0];
-        Activate();
     }
 
     public void Activate()
     {
+        door.SetActive(false);
         inLink.activated = true;
         outLink.activated = true;
     }
 
     public void Deactivate()
     {
+        door.SetActive(true);
         inLink.activated = false;
         outLink.activated = false;
     }

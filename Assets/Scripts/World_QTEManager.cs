@@ -82,6 +82,7 @@ public class World_QTEManager : MonoBehaviour
         if (qte != null)
         {
             player.MoveDisable();
+            player.movementControl.ResetPath();
             //run qte function, move it to a new script?
             runQTE();
             Debug.Log("qte was triggered");
