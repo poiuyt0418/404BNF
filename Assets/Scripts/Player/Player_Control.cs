@@ -11,7 +11,7 @@ public class Player_Control : MonoBehaviour
     Vector3 mouseToWorld;
     public float speed = 5;
     //public Rigidbody rb;
-    NavMeshAgent movementControl;
+    public NavMeshAgent movementControl;
     PlayerInput controls;
     // Start is called before the first frame update
     void Start()
@@ -46,7 +46,8 @@ public class Player_Control : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
         {
-            Move(hit.point);
+            if (hit.collider.tag != "Player")
+                Move(hit.point);
         }
     }
 

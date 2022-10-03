@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7370117794243796123}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,7 +130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   y: 0
-  mouseToWorld: {x: 0, y: 0, z: 0}
   speed: 5
 --- !u!195 &7370117794243796123
 NavMeshAgent:
