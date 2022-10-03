@@ -1625,7 +1625,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d549e14c8fd6ef742a85e8c66662c485, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d549e14c8fd6ef742a85e8c66662c485, type: 3}
       propertyPath: m_LocalScale.x
@@ -2337,7 +2337,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1197925732527014054, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_Name
-      value: Door
+      value: First Puzzle Door
       objectReference: {fileID: 0}
     - target: {fileID: 2841367721949233112, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3826,7 +3826,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1197925732527014054, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_Name
-      value: Door (3)
+      value: Start Door
       objectReference: {fileID: 0}
     - target: {fileID: 2841367721949233112, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3858,7 +3858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3889609427473638752, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3889609427473638752, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4138,12 +4138,12 @@ Transform:
   - {fileID: 1164106893}
   - {fileID: 2142230783}
   - {fileID: 319079505}
-  - {fileID: 2107794829}
   - {fileID: 1441094972}
   - {fileID: 2026210457}
   - {fileID: 1156332291}
   - {fileID: 528673427}
   - {fileID: 1503409589}
+  - {fileID: 2107794829}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5263,7 +5263,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1197925732527014054, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_Name
-      value: Door (2)
+      value: Third Puzzle Door
       objectReference: {fileID: 0}
     - target: {fileID: 2841367721949233112, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5295,7 +5295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3889609427473638752, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3889609427473638752, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5702,6 +5702,10 @@ PrefabInstance:
       value: Door03Model (5)
       objectReference: {fileID: 0}
     - target: {fileID: 1197925732527014054, guid: 4c461330901de7e47ada4abc05842008, type: 3}
+      propertyPath: m_Name
+      value: Corridor Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197925732527014054, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -5735,7 +5739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3889609427473638752, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3889609427473638752, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_LocalScale.x
@@ -8037,7 +8041,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d549e14c8fd6ef742a85e8c66662c485, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d549e14c8fd6ef742a85e8c66662c485, type: 3}
       propertyPath: m_LocalScale.x
@@ -8208,7 +8212,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d549e14c8fd6ef742a85e8c66662c485, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d549e14c8fd6ef742a85e8c66662c485, type: 3}
       propertyPath: m_LocalScale.x
@@ -8559,7 +8563,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1197925732527014054, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_Name
-      value: Door (1)
+      value: Second Puzzle Door
       objectReference: {fileID: 0}
     - target: {fileID: 2841367721949233112, guid: 4c461330901de7e47ada4abc05842008, type: 3}
       propertyPath: m_LocalPosition.x
