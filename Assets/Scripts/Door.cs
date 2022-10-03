@@ -17,7 +17,6 @@ public class Door : MonoBehaviour
     void Start()
     {
         player = Object.FindObjectsOfType<Player_Control>()[0];
-        Activate();
     }
 
     public void Activate()
