@@ -10,10 +10,9 @@ public class MatchLogic : MonoBehaviour
     public GameObject WireCanvas;
 
     public int MaxWires = 4;
-    public GameObject TaskCompleteUI;
     private int connected = 0;
     public Text testText;
-
+    public Door door;
     void Start()
     {
         Instance = this;
@@ -24,8 +23,8 @@ public class MatchLogic : MonoBehaviour
         testText.text = connected + "/" + MaxWires;
         if(connected == MaxWires)
         {
-            //Door door.Activate();
             WireCanvas.SetActive(false);
+            door.Activate();
         }
     }
 

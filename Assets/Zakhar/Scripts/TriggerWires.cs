@@ -6,6 +6,11 @@ public class TriggerWires : MonoBehaviour
 {
     public GameObject WireCanvas;
 
+    private void Awake() 
+    {
+        WireCanvas.SetActive(false);
+    }
+
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player"))
         {
