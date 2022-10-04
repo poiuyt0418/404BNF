@@ -36,6 +36,8 @@ public class Player_Control : MonoBehaviour
     {
         controls = new PlayerInput();
         controls.Player.move.performed += ctx => ClickToMove();
+        controls.System.exit.performed += ctx => Application.Quit();
+        controls.System.Enable();
         MoveEnable();
     }
 
