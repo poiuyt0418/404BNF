@@ -66,6 +66,11 @@ public class Player_Control : MonoBehaviour
         }
     }
 
+    public bool CheckPart(string type)
+    {
+        return parts[Array.IndexOf(partIndexes, type)] != null;
+    }
+
 
     void ClickToMove()
     {

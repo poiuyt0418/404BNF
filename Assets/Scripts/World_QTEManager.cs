@@ -113,7 +113,6 @@ public class World_QTEManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("a");
                 player.MoveEnable();
                 Destroy(background);
                 part = new Part();
