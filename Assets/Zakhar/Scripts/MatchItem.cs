@@ -14,7 +14,6 @@ public class MatchItem : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
     public void OnPointerDown(PointerEventData eventData)
     {
         line = Instantiate(WirePrefab, transform.position, Quaternion.identity, transform.parent.parent);
-        line.transform.SetAsFirstSibling();
         UpdateLine(eventData.position);
     }
 

@@ -52,8 +52,7 @@ public class Player_Control : MonoBehaviour
     public void AddPart(Part part)
     {
         parts[Array.IndexOf(partIndexes, part.name)] = part;
-        parts[1] = part;
-        partBars[Array.IndexOf(partIndexes, part.name)].SetValue();
+        //partBars[Array.IndexOf(partIndexes, part.name)].SetValue(); //Changes ui bars, add later
     }
 
     public float PartDurability(string type)

@@ -8,11 +8,12 @@ public class MatchLogic : MonoBehaviour
     static MatchLogic Instance;
 
     public GameObject WireCanvas;
-
+    public GameObject trigger;
     public int MaxWires = 4;
     private int connected = 0;
     public Text testText;
     public Door door;
+    public Player_Control player;
     void Start()
     {
         Instance = this;
@@ -24,6 +25,8 @@ public class MatchLogic : MonoBehaviour
         if(connected == MaxWires)
         {
             WireCanvas.SetActive(false);
+            trigger.SetActive(false);
+            player.MoveEnable();
             door.Activate();
         }
     }

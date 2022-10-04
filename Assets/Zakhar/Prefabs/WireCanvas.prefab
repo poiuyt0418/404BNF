@@ -878,8 +878,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WireCanvas: {fileID: 4213911527972154615}
   MaxWires: 4
-  TaskCompleteUI: {fileID: 0}
   testText: {fileID: 4213911526477316353}
+  door: {fileID: 0}
 --- !u!1 &4213911528070777947
 GameObject:
   m_ObjectHideFlags: 0
