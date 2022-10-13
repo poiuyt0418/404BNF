@@ -1,23 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MagnetHandPush : MonoBehaviour
 {
-    Rigidbody rb;
+    //Rigidbody rb;
     public Door door;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
+        
     }
 
-    void OnCollisionEnter(Collision collision)
+    void Awake()
     {
-        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerControl>().CheckPart("arm"))
+        
+    }
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
-            rb.mass = 2;
-            door.Activate();
+            if (collision.gameObject.GetComponent<PlayerControl>().CheckPart("arm"))
+            {
+                
+                transform.SetParent(collision.gameObject.transform);
+                //GetComponent<NavMeshObstacle>().carving = false;
+                GetComponent<NavMeshObstacle>().enabled = false;
+                door.Activate();
+            }
+            //rb.mass = 2;
         }
     }
 
