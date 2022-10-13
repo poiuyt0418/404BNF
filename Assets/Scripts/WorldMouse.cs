@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class World_Mouse : MonoBehaviour
+public class WorldMouse : MonoBehaviour
 {
     //public Vector3 mouseToWorld;
     //Plane plane = new Plane(Vector3.up, 0);

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Bar_Control : MonoBehaviour
+public class BarControl : MonoBehaviour
 {
-    Player_Control player;
+    PlayerControl player;
     [SerializeField]
     Slider slider;
     [SerializeField]
@@ -13,7 +13,7 @@ public class Bar_Control : MonoBehaviour
     void Start()
     {
         if (player == null)
-            player = UnityEngine.Object.FindObjectsOfType<Player_Control>()[0];
+            player = UnityEngine.Object.FindObjectsOfType<PlayerControl>()[0];
     }
 
     public void SetValue()

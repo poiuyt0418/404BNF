@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class World_Exit : MonoBehaviour
+public class WorldExit : MonoBehaviour
 {
     public TMP_Text objText;
-    public Player_Control player;
+    public PlayerControl player;
     // Start is called before the first frame update
     void Start()
     {

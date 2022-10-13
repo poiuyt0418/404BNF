@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QTE_Trigger : MonoBehaviour
+public class QTETrigger : MonoBehaviour
 {
-    public QTE_ScriptableObject qte;
-    public World_QTEManager manager;
+    public QTEScriptableObject qte;
+    public WorldQTEManager manager;
     public string partType;
     // Start is called before the first frame update
     void Start()
     {
         if (manager == null)
-            manager = Object.FindObjectsOfType<World_QTEManager>()[0];
+            manager = Object.FindObjectsOfType<WorldQTEManager>()[0];
     }
 
     void OnTriggerEnter()

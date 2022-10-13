@@ -11,12 +11,12 @@ public class Door : MonoBehaviour
     OffMeshLink inLink, outLink;
     [SerializeField]
     Transform cameraPosition, outCameraPosition;
-    Player_Control player;
+    PlayerControl player;
     
     // Start is called before the first frame update
     void Start()
     {
-        player = Object.FindObjectsOfType<Player_Control>()[0];
+        player = Object.FindObjectsOfType<PlayerControl>()[0];
     }
 
     public void Activate()

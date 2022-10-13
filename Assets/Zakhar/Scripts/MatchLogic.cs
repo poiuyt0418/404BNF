@@ -13,7 +13,7 @@ public class MatchLogic : MonoBehaviour
     private int connected = 0;
     public Text testText;
     public Door door;
-    public Player_Control player;
+    public PlayerControl player;
     void Start()
     {
         Instance = this;

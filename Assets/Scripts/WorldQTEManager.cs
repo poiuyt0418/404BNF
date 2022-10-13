@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class World_QTEManager : MonoBehaviour
+public class WorldQTEManager : MonoBehaviour
 {
-    private QTE_ScriptableObject qte;
+    private QTEScriptableObject qte;
     public GameObject canvas;
     public Camera canvasCamera;
     GameObject currQTE;
@@ -20,7 +20,7 @@ public class World_QTEManager : MonoBehaviour
     float timer = 0;
     Stack qteStack = new Stack();
     int screenWidth = 1920, screenHeight = 1080;
-    Player_Control player;
+    PlayerControl player;
     string partType;
     Part part;
     // Start is called before the first frame update
@@ -35,10 +35,10 @@ public class World_QTEManager : MonoBehaviour
     void Start()
     {
         if (player == null)
-            player = UnityEngine.Object.FindObjectsOfType<Player_Control>()[0];
+            player = UnityEngine.Object.FindObjectsOfType<PlayerControl>()[0];
     }
 
-    public void TriggerQTE(QTE_ScriptableObject triggered, string part)
+    public void TriggerQTE(QTEScriptableObject triggered, string part)
     {
         qte = triggered;
         partType = part;
@@ -106,8 +106,8 @@ public class World_QTEManager : MonoBehaviour
                 Vector2 currPos = instance.coord;
                 Vector3 currButton = new Vector3((currPos.x - .5f) * screenWidth, (currPos.y - .5f) * screenHeight, -1);
                 currQTE = Instantiate(qteEvents[Array.IndexOf(indexes, instance.type)]) as GameObject;
-                currQTE.GetComponent<QTE_Button>().duration = holdDuration;
-                currQTE.GetComponent<QTE_Button>().targetPos = (type == "random") ? new Vector2(Random.Range(1f, 2f) * (Random.Range(0, 1) * 2 - 1), Random.Range(1f, 2f) * (Random.Range(0, 1) * 2 - 1)) : target;
+                currQTE.GetComponent<QTEButton>().duration = holdDuration;
+                currQTE.GetComponent<QTEButton>().targetPos = (type == "random") ? new Vector2(Random.Range(1f, 2f) * (Random.Range(0, 1) * 2 - 1), Random.Range(1f, 2f) * (Random.Range(0, 1) * 2 - 1)) : target;
                 currQTE.transform.SetParent(canvas.transform, false);
                 currQTE.GetComponent<RectTransform>().localPosition = currButton;
             }

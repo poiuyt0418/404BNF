@@ -14,7 +14,7 @@ public class MagnetHandPush : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<Player_Control>().CheckPart("arm"))
+        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerControl>().CheckPart("arm"))
         {
             rb.mass = 2;
             door.Activate();

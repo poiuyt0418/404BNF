@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QTE_Button : MonoBehaviour
+public class QTEButton : MonoBehaviour
 {
     public float duration;
     public Vector2 targetPos;

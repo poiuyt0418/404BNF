@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button_Hold : QTE_Button
+public class ButtonHold : QTEButton
 {
     bool held;
     int press;

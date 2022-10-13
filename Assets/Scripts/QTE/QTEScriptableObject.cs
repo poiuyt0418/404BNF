@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/QTE")]
-public class QTE_ScriptableObject : ScriptableObject
+public class QTEScriptableObject : ScriptableObject
 {
     enum QTEType { press, drag, hold, random };
     [Tooltip("-List types of qte in the game")]

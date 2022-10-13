@@ -5,7 +5,7 @@ using UnityEngine;
 public class TriggerWires : MonoBehaviour
 {
     public GameObject WireCanvas;
-    public Player_Control player;
+    public PlayerControl player;
     private void Awake() 
     {
         WireCanvas.SetActive(false);

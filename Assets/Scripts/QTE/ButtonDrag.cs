@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Button_Drag : QTE_Button
+public class ButtonDrag : QTEButton
 {
     Vector3 originalPos;
     RectTransform rect;

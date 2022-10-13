@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Player_Control : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     public int x, y = 0;
     Vector3 velocity = Vector3.zero;
@@ -16,8 +16,8 @@ public class Player_Control : MonoBehaviour
     PlayerInput controls;
     Part[] parts = new Part[3];
     string[] partIndexes = { "body", "arm", "leg" };
-    Bar_Control[] partBars = new Bar_Control[3];
-    public Bar_Control body, arm, leg;
+    BarControl[] partBars = new BarControl[3];
+    public BarControl body, arm, leg;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +54,7 @@ public class Player_Control : MonoBehaviour
     public void AddPart(Part part)
     {
         parts[Array.IndexOf(partIndexes, part.name)] = part;
-        //partBars[Array.IndexOf(partIndexes, part.name)].SetValue(); //Changes ui bars, add later
+        partBars[Array.IndexOf(partIndexes, part.name)].SetValue(); //Changes ui bars, add later
     }
 
     public float PartDurability(string type)
