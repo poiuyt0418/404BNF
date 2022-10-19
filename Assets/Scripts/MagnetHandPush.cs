@@ -19,6 +19,12 @@ public class MagnetHandPush : MonoBehaviour
         
     }
 
+    private IEnumerator EraseObject()
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
+    }
+
     void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -30,6 +36,7 @@ public class MagnetHandPush : MonoBehaviour
                 //GetComponent<NavMeshObstacle>().carving = false;
                 GetComponent<NavMeshObstacle>().enabled = false;
                 door.Activate();
+                StartCoroutine(EraseObject());
             }
             //rb.mass = 2;
         }
