@@ -6,7 +6,9 @@ Fall 2022
 Point-n-Click
 Quick-Time Events
 Resource Management
-
+Star System
+Timed Levels
+Level Select
 -Controls-
 Left Click: Move the player, interact with the environment, complete QTEs, exit rooms.
 
