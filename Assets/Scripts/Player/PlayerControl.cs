@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
 {
     public int x, y = 0;
     Vector3 velocity = Vector3.zero;
-    Vector3 mouseToWorld;
+    public Vector3 mouseToWorld;
     public float speed = 5;
     //public Rigidbody rb;
     public NavMeshAgent movementControl;
@@ -51,6 +51,11 @@ public class PlayerControl : MonoBehaviour
         controls.Player.Disable();
     }
 
+    public bool MoveEnabled()
+    {
+        return controls.Player.enabled;
+    }
+
     public void AddPart(Part part)
     {
         parts[Array.IndexOf(partIndexes, part.name)] = part;
@@ -77,11 +82,17 @@ public class PlayerControl : MonoBehaviour
     void ClickToMove()
     {
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+        if (Time.timeScale != 0 && CheckCameraBounds() && Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
         {
             if (hit.collider.tag != "Player")
                 Move(hit.point);
         }
+    }
+
+    bool CheckCameraBounds()
+    {
+        Vector3 bounds = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        return bounds.x >= 0 && bounds.x <= 1 && bounds.y >= 0 && bounds.y <= 1;
     }
 
     public void Move(Vector3 pos)

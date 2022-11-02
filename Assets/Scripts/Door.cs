@@ -44,7 +44,7 @@ public class Door : MonoBehaviour
             //player.transform.position = destination;
             player.transform.rotation = link.endTransform.rotation;
             player.movementControl.isStopped = false;
-            Camera.main.transform.position = cameraPos.position;
+            //Camera.main.transform.position = cameraPos.position;
             Camera.main.transform.rotation = cameraPos.rotation;
             return true;
         }
