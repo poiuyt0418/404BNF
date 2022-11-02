@@ -4,7 +4,7 @@ using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LvlTransition : MonoBehaviour
+public class LvlTransition : SceneTransition
 {
 
     public void PlayLevel ()

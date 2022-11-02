@@ -38,7 +38,7 @@ public class WorldExit : MonoBehaviour
         objText.text = "You have escaped.";
         Debug.Log(timer / (float)timeForLevel);
         int stars = Mathf.Clamp((int)(timer / (float)timeForLevel * 3 + 1), 0, 3);
-        PlayerPrefs.SetInt("Level" + (SceneManager.GetActiveScene().buildIndex-1), stars);
+        DataManager.gameData.AddStars(levelSelectIndex,stars);
         timer = 0;
         StartCoroutine(DelayedExit());
 

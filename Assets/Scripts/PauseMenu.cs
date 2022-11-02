@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Threading;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : SceneTransition
 {
     [SerializeField] GameObject pauseMenu;
 
@@ -23,8 +23,7 @@ public class PauseMenu : MonoBehaviour
     public void Home(int sceneID)
     {
         Time.timeScale = 1f;
+        DataManager.WriteFile();
         SceneManager.LoadScene(sceneID);
     }
-    
-
 }

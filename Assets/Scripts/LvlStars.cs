@@ -12,7 +12,7 @@ public class LvlStars : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stars = PlayerPrefs.GetInt("Level" + levelIndex, 0);
+        stars = DataManager.gameData.StarsCount(levelIndex);
         CoverStars();
     }
 

@@ -87,7 +87,8 @@ public class PlayerControl : MonoBehaviour
     public void Move(Vector3 pos)
     {
         mouseToWorld = pos;
-        movementControl.SetDestination(pos);
+        if(movementControl != null)
+            movementControl.SetDestination(pos);
     }
 
     // Update is called once per frame

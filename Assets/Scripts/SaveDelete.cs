@@ -12,7 +12,8 @@ public class SaveDelete : MonoBehaviour
 
     public void DeleteSave()
     {
-        PlayerPrefs.DeleteAll();
+        DataManager.gameData = new GameData();
+        DataManager.WriteFile();
     }
 
     // Update is called once per frame
