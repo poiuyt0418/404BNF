@@ -5,13 +5,13 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     [SerializeField]
-    float distanceFromCenter, cameraSpeed;
+    float distanceFromCenter, cameraSpeed, cameraY = 12;
     [SerializeField]
     Transform player;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     Vector3 SetDestination(Vector3 destination)
@@ -20,6 +20,7 @@ public class CameraControl : MonoBehaviour
         destination.x = Mathf.Clamp(destination.x, playerPos.x - distanceFromCenter, playerPos.x + distanceFromCenter);
         destination.y = Mathf.Clamp(destination.y, playerPos.y - distanceFromCenter, playerPos.y + distanceFromCenter);
         destination = Camera.main.ViewportToWorldPoint(destination);
+        destination.y = cameraY;
         return Vector3.Slerp(transform.position, new Vector3(destination.x, transform.position.y, destination.z), Time.deltaTime * cameraSpeed);
     }
 
@@ -42,18 +43,19 @@ public class CameraControl : MonoBehaviour
     {
         Vector3 bounds = Camera.main.ScreenToViewportPoint(Input.mousePosition);
         return bounds.x >= 0 && bounds.x <= 1 && bounds.y >= 0 && bounds.y <= 1;
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(CheckCameraBounds() && player.GetComponent<PlayerControl>().MoveEnabled())
+        if (CheckCameraBounds() && player.GetComponent<PlayerControl>().MoveEnabled())
         {
             transform.position = SetDestination(Camera.main.ScreenToViewportPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)));
-        } else
+        }
+        else
         {
-            transform.position = SetDestination(Vector3.one/2);
+            transform.position = SetDestination(Vector3.one / 2);
         }
     }
 }

@@ -11,11 +11,17 @@ public class TriggerWires : MonoBehaviour
         WireCanvas.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            player.MoveDisable();
-            WireCanvas.SetActive(true);
-        }
+    void OnMouseDown()
+    {
+        player.MoveDisable();
+        WireCanvas.SetActive(true);
     }
+
+    //private void OnTriggerEnter(Collider other) {
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        player.MoveDisable();
+    //        WireCanvas.SetActive(true);
+    //    }
+    //}
 }
