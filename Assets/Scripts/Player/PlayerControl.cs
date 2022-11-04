@@ -98,15 +98,6 @@ public class PlayerControl : MonoBehaviour
             if (hit.collider.tag != "Player")
             {
                 Move(hit.point);
-                foreach (Part element in GetPartByUsage("step"))
-                {
-                    element.dur -= 5;
-                    partBars[Array.IndexOf(partIndexes, element.name)].SetValue();
-                    if(element.dur < 0)
-                    {
-                        DestroyPart(Array.IndexOf(partIndexes, element.name));
-                    }
-                }
             }
         }
     }
@@ -121,7 +112,32 @@ public class PlayerControl : MonoBehaviour
     {
         mouseToWorld = pos;
         if(movementControl != null)
+        {
             movementControl.SetDestination(pos);
+            StartCoroutine(WaitForPath());
+        }
+    }
+
+    IEnumerator WaitForPath()
+    {
+        yield return movementControl.pathPending;
+        while (true)
+        {
+            yield return new WaitForSeconds(.1f);
+            if (movementControl.pathPending || movementControl.remainingDistance == 0)
+            {
+                yield break;
+            }
+            foreach (Part element in GetPartByUsage("step"))
+            {
+                element.dur -= .05f * movementControl.velocity.magnitude;
+                partBars[Array.IndexOf(partIndexes, element.name)].SetValue();
+                if (element.dur < 0)
+                {
+                    DestroyPart(Array.IndexOf(partIndexes, element.name));
+                }
+            }
+        }
     }
 
     // Update is called once per frame
