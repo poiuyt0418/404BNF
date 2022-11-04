@@ -60,6 +60,7 @@ public class PlayerControl : MonoBehaviour
     {
         parts[Array.IndexOf(partIndexes, part.name)] = part;
         partBars[Array.IndexOf(partIndexes, part.name)].SetValue(); //Changes ui bars, add later
+        movementControl.speed += part.speed;
     }
 
     public float PartDurability(string type)
@@ -78,6 +79,16 @@ public class PlayerControl : MonoBehaviour
         return parts[Array.IndexOf(partIndexes, type)] != null;
     }
 
+    public void DestroyPart(int index)
+    {
+        movementControl.speed -= parts[index].speed;
+        parts[index] = null;
+    }
+
+    public Part[] GetPartByUsage(string usage)
+    {
+        return Array.FindAll(parts, element => element != null && element.usage == usage);
+    }
 
     void ClickToMove()
     {
@@ -85,7 +96,18 @@ public class PlayerControl : MonoBehaviour
         if (Time.timeScale != 0 && CheckCameraBounds() && Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
         {
             if (hit.collider.tag != "Player")
+            {
                 Move(hit.point);
+                foreach (Part element in GetPartByUsage("step"))
+                {
+                    element.dur -= 5;
+                    partBars[Array.IndexOf(partIndexes, element.name)].SetValue();
+                    if(element.dur < 0)
+                    {
+                        DestroyPart(Array.IndexOf(partIndexes, element.name));
+                    }
+                }
+            }
         }
     }
 

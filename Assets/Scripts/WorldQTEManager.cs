@@ -118,6 +118,7 @@ public class WorldQTEManager : MonoBehaviour
                 part = new Part();
                 part.name = partType;
                 part.dur = durability;
+                part.SetUsage();
                 player.AddPart(part);
                 duration = 0;
             }

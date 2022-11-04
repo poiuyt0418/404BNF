@@ -280,6 +280,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1120784119787357459, guid: 7ab1b080defe12e46bed6a1a38834d1d, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487459281424306620, guid: 7ab1b080defe12e46bed6a1a38834d1d, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328773109009561737, guid: 7ab1b080defe12e46bed6a1a38834d1d, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3441103063755207287, guid: 7ab1b080defe12e46bed6a1a38834d1d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4900,6 +4912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraPos: {fileID: 570683231}
   cameraY: 12
+  speed: 3
 --- !u!1 &1339385151
 GameObject:
   m_ObjectHideFlags: 0
@@ -6170,7 +6183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   qte: {fileID: 11400000, guid: b839f4d5ae15a3244a311770d99af27c, type: 2}
   manager: {fileID: 1236578925}
-  partType: arm
+  partType: leg
 --- !u!1001 &1521783689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8142,6 +8155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraPos: {fileID: 933650061}
   cameraY: 12
+  speed: 3
 --- !u!1001 &2101384429
 PrefabInstance:
   m_ObjectHideFlags: 0

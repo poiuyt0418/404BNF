@@ -7,7 +7,7 @@ public class CameraChange : MonoBehaviour
     [SerializeField]
     Transform cameraPos;
     [SerializeField]
-    float cameraY = 12;
+    float cameraY = 12, speed = 3;
     bool lockOn, ended;
     Vector3 oldCameraPos;
     Quaternion oldCameraRot;
@@ -46,14 +46,14 @@ public class CameraChange : MonoBehaviour
     {
         if(lockOn)
         {
-            Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, cameraPos.rotation, Time.deltaTime);
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraPos.position, Time.deltaTime);
+            Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, cameraPos.rotation, Time.deltaTime * speed);
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraPos.position, Time.deltaTime * speed);
         } else if(camControl.enabled == false && ended)
         {
             if(Camera.main.transform.position.y != cameraY || Camera.main.transform.rotation != oldCameraRot)
             {
-                Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, oldCameraRot, Time.deltaTime*5);
-                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(Camera.main.transform.position.x, oldCameraPos.y, Camera.main.transform.position.z), Time.deltaTime*5);
+                Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, oldCameraRot, Time.deltaTime * 3 * speed);
+                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(Camera.main.transform.position.x, oldCameraPos.y, Camera.main.transform.position.z), Time.deltaTime * 5 * speed);
                 if (Camera.main.transform.position.y > cameraY - .01)
                 {
                     Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, cameraY, Camera.main.transform.position.z);
