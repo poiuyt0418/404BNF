@@ -12,6 +12,7 @@ public class CameraChange : MonoBehaviour
     Vector3 oldCameraPos;
     Quaternion oldCameraRot;
     CameraControl camControl;
+    Transform player;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,7 @@ public class CameraChange : MonoBehaviour
         if (other.GetComponent<PlayerControl>() != null)
         {
             lockOn = false;
+            player = other.transform;
             //Camera.main.transform.position = oldCameraPos;
             //Camera.main.transform.rotation = oldCameraRot;
         }
@@ -53,8 +55,8 @@ public class CameraChange : MonoBehaviour
             if(Camera.main.transform.position.y != cameraY || Camera.main.transform.rotation != oldCameraRot)
             {
                 Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, oldCameraRot, Time.deltaTime * 3 * speed);
-                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(Camera.main.transform.position.x, oldCameraPos.y, Camera.main.transform.position.z), Time.deltaTime * 5 * speed);
-                if (Camera.main.transform.position.y > cameraY - .01)
+                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(player.position.x, oldCameraPos.y, player.position.z), Time.deltaTime * 5 * speed);
+                if (Mathf.Abs(Camera.main.transform.position.y - cameraY) < .01)
                 {
                     Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, cameraY, Camera.main.transform.position.z);
                 }

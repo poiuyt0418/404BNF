@@ -21,7 +21,7 @@ public class CameraControl : MonoBehaviour
         destination.y = Mathf.Clamp(destination.y, playerPos.y - distanceFromCenter, playerPos.y + distanceFromCenter);
         destination = Camera.main.ViewportToWorldPoint(destination);
         destination.y = cameraY;
-        return Vector3.Slerp(transform.position, new Vector3(destination.x, transform.position.y, destination.z), Time.deltaTime * player.gameObject.GetComponent<PlayerControl>().movementControl.speed * cameraSpeed / 2);
+        return Vector3.Slerp(transform.position, new Vector3(destination.x, destination.y, destination.z), Time.deltaTime * player.gameObject.GetComponent<PlayerControl>().movementControl.speed * cameraSpeed / 2);
     }
 
     //Vector3 CheckScreenBounds()
