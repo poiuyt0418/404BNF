@@ -5,16 +5,21 @@ using UnityEngine;
 public class CameraChange : MonoBehaviour
 {
     [SerializeField]
-    Transform cameraPos;
+    protected Transform cameraPos;
     [SerializeField]
-    float cameraY = 12, speed = 3;
-    bool lockOn, ended;
-    Vector3 oldCameraPos;
-    Quaternion oldCameraRot;
-    CameraControl camControl;
-    Transform player;
+    protected float cameraY = 12, speed = 3;
+    protected bool lockOn, ended;
+    protected Vector3 oldCameraPos;
+    protected Quaternion oldCameraRot;
+    protected CameraControl camControl;
+    protected Transform player;
     // Start is called before the first frame update
     void Start()
+    {
+        
+    }
+
+    public virtual void Awake()
     {
         camControl = Camera.main.gameObject.GetComponent<CameraControl>();
     }

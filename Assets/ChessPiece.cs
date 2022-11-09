@@ -16,14 +16,23 @@ public class ChessPiece : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         player = collision.collider.transform;
-        if (player != null)
+        if (player != null && ChessManager.board.attached == null)
         {
+            ChessManager.board.Attach(this);
             Vector3 tempOriginalScale = transform.localScale;
             transform.localScale = Vector3.one;
             relativePosition = transform.InverseTransformPoint(player.position);
             transform.localScale = tempOriginalScale;
             relativeRot = Quaternion.LookRotation(relativePosition).eulerAngles.y-180;
             GetComponent<Collider>().enabled = false;
+        }
+    }
+
+    public void Release()
+    {
+        if(player != null)
+        {
+            player = null;
         }
     }
 
