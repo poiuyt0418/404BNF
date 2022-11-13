@@ -27,14 +27,14 @@ public static class ChessManager
 
     public static void Release()
     {
-        if(board == null)
+        if(board != null && board.attached == null)
         {
             foreach(ChessPiece piece in GameObject.FindObjectsOfType<ChessPiece>())
             {
                 GameObject.Destroy(piece.gameObject);
             }
         }
-        else
+        else if(board != null)
         {
             board.Drop();
         }

@@ -35,7 +35,7 @@ public class ChessCamera : CameraChange
         {
             lockOn = false;
             player = other.transform;
-            ChessManager.RemoveBoard();
+            //ChessManager.RemoveBoard();
         }
     }
 

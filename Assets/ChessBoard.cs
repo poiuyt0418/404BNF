@@ -55,9 +55,12 @@ public class ChessBoard : MonoBehaviour
 
     public void EnterBoard()
     {
-        ChessPiece piece = null;
+        
+        Reset();
+        ChessManager.Release();
         foreach (ChessTilePiece p in tilePieces)
         {
+            ChessPiece piece = null;
             if (p.color.ToLower() == "black")
             {
                 piece = Instantiate(black, ConvertTileToPos(p.tileVector, black), Quaternion.identity);
@@ -69,6 +72,10 @@ public class ChessBoard : MonoBehaviour
             ChessTile tile = new ChessTile();
             tile.piece = piece;
             tile.tileEvent = p.tileEvent;
+            if(tile.tileEvent == ChessEvent.die)
+            {
+                rows[(int)p.tileVector.x].Get((int)p.tileVector.y).GetComponent<Renderer>().material.color = new Color(1,0,0);
+            }
             tiles.Add(p.tileVector, tile);
         }
         cg.alpha = 1f;
@@ -96,12 +103,18 @@ public class ChessBoard : MonoBehaviour
             else if (tiles[tileVector].piece == null)
             {
                 tiles[tileVector].piece = attached;
+                if(tiles[tileVector].tileEvent == ChessEvent.die)
+                {
+                    Destroy(attached.gameObject);
+                    return;
+                }
             }
             else
             {
                 Debug.Log("Another piece is there");
                 return;
             }
+            attached.dropped = true;
             attached.Release();
             attached.transform.position = ConvertTileToPos(new Vector2(posX,posZ),attached);
             attached = null;
