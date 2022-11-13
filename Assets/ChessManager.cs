@@ -2,45 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class ChessManager
+public class ChessManager
 {
-    public static ChessBoard board;
-    public static GameObject player = GameObject.FindGameObjectsWithTag("Player")[0];
-    // Start is called before the first frame update
-    public static void AddBoard(ChessBoard bd)
+    private static ChessManager instance;
+    public ChessBoard board;
+    public GameObject player = GameObject.FindGameObjectsWithTag("Player")[0];
+    
+    public static ChessManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new ChessManager();
+            }
+            return instance;
+        }
+    }
+
+    public void AddBoard(ChessBoard bd)
     {
         board = bd;
         board.EnterBoard();
     }
 
-    public static void RemoveBoard()
+    public void RemoveBoard()
     {
         board.Reset();
         board = null;
         Release();
     }
 
-    public static bool GameEnabled()
+    public bool GameEnabled()
     {
         return board != null;
     }
 
-    public static void Release()
+    public void Release()
     {
         if(board != null && board.attached == null)
         {
-            foreach(ChessPiece piece in GameObject.FindObjectsOfType<ChessPiece>())
+            foreach(ChessPiece piece in GetPieces())
             {
                 GameObject.Destroy(piece.gameObject);
             }
         }
-        else if(board != null)
-        {
-            board.Drop();
-        }
     }
 
-    public static void GameEnd()
+    public ChessPiece[] GetPieces()
+    {
+        return GameObject.FindObjectsOfType<ChessPiece>();
+    }
+
+    public void GameEnd()
     {
         board = null;
     }

@@ -25,7 +25,7 @@ public class ChessCamera : CameraChange
             lockOn = true;
             camControl.enabled = false;
             ended = true;
-            ChessManager.AddBoard(transform.parent.GetComponent<ChessBoard>());
+            ChessManager.Instance.AddBoard(transform.parent.GetComponent<ChessBoard>());
         }
     }
 
@@ -33,10 +33,19 @@ public class ChessCamera : CameraChange
     {
         if (other.GetComponent<PlayerControl>() != null)
         {
-            lockOn = false;
-            player = other.transform;
-            //ChessManager.RemoveBoard();
+            StartCoroutine(ChessManager.Instance.board.DoEvents());
+            StartCoroutine(ExitBoard(other.transform));
         }
+    }
+
+    IEnumerator ExitBoard(Transform other)
+    {
+        while(ChessManager.Instance.board.executing)
+        {
+            yield return new WaitForSeconds(.1f);
+        }
+        lockOn = false;
+        player = other;
     }
 
     public bool Entered()

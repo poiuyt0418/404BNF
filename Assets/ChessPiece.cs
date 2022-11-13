@@ -9,6 +9,8 @@ public class ChessPiece : MonoBehaviour
     Vector3 relativePosition;
     float relativeRot;
     public bool dropped = false;
+    public Vector2 movement;
+    public int forward;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,15 +20,17 @@ public class ChessPiece : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         player = collision.collider.transform;
-        if (player != null && ChessManager.board.attached == null && !dropped)
+        if (player != null && ChessManager.Instance.board.attached == null && !dropped)
         {
-            ChessManager.board.Attach(this);
+            ChessManager.Instance.board.Attach(this);
             Vector3 tempOriginalScale = transform.localScale;
             transform.localScale = Vector3.one;
             relativePosition = transform.InverseTransformPoint(player.position);
+            //relativePosition += Vector3.forward * .1f;
             transform.localScale = tempOriginalScale;
             relativeRot = Quaternion.LookRotation(relativePosition).eulerAngles.y-180;
             GetComponent<NavMeshObstacle>().enabled = false;
+            GetComponent<Collider>().enabled = false;
         }
     }
 
@@ -36,15 +40,17 @@ public class ChessPiece : MonoBehaviour
         {
             player = null;
             GetComponent<NavMeshObstacle>().enabled = true;
+            GetComponent<Collider>().enabled = true;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player != null && ChessManager.board.attached == this)
+        if (player != null && ChessManager.Instance.board.attached == this)
         {
             transform.position = player.position - Quaternion.Euler(0, player.eulerAngles.y - relativeRot, 0) * relativePosition;
+            //transform.position = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
         }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChessRow : MonoBehaviour
 {
+    public int col;
     public GameObject a, b, c, d, e, f, g, h;
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,10 @@ public class ChessRow : MonoBehaviour
 
     public GameObject Get(int value)
     {
+        if(value > col-1)
+        {
+            return null;
+        }
         switch(value)
         {
             case 0:
