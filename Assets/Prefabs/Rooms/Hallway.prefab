@@ -124,6 +124,7 @@ MonoBehaviour:
   - {fileID: 7273797409311093276}
   - {fileID: 3663430734657141119}
   - {fileID: 8728532445627614358}
+  Status: 
   RoomSize: {x: 0, y: 0}
 --- !u!1 &2300372752176596008
 GameObject:
@@ -607,7 +608,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5653868751819624103}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 8.992332, y: 16.67133, z: 12.794067}
+  m_LocalPosition: {x: 9.14, y: 16.67133, z: 12.794067}
   m_LocalScale: {x: 0.14897998, y: 2.4157796, z: 13.240482}
   m_ConstrainProportionsScale: 0
   m_Children:
