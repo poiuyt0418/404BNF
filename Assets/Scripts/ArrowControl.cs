@@ -59,12 +59,15 @@ public class ArrowControl : MonoBehaviour
                 return;
             }
         }
-        Vector3 direction = CalcDirection(currentTransform);
+        Vector3 direction = Vector3.zero;
+        if (currentTransform != null)
+        {
+            direction = CalcDirection(currentTransform);
+        }
         if (direction.magnitude >= distanceToStop)
         {
             transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, new Vector3(direction.x, transform.position.y, direction.z), 1f, 0.0f));
             transform.position = new Vector3(currentTransform.position.x, transform.position.y, currentTransform.position.z);
-            Debug.Log(GetComponent<RectTransform>().localPosition);
             GetComponent<RectTransform>().localPosition = new Vector3(Mathf.Clamp(GetComponent<RectTransform>().localPosition.x, -150, 150), Mathf.Clamp(GetComponent<RectTransform>().localPosition.y, -200, 200), 0);
             if (stop)
             {
