@@ -227,6 +227,7 @@ public class ChessBoard : MonoBehaviour
             ButtonOff();
             solved = true;
             StartCoroutine(cameraControl.ExitBoard(ChessManager.Instance.player.transform));
+            StartCoroutine(cameraControl.DeleteCamera());
             door.Activate();
         }
         else

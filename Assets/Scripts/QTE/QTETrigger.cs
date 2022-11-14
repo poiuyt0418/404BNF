@@ -17,8 +17,9 @@ public class QTETrigger : MonoBehaviour
     void OnTriggerEnter()
     {
         manager.TriggerQTE(qte, partType);
-        Destroy(gameObject);
+        manager.StartCoroutine(manager.Respawn(gameObject));
         TriggerEffect();
+        Destroy(gameObject);
     }
 
     void TriggerEffect()

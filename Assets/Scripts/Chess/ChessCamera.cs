@@ -63,6 +63,15 @@ public class ChessCamera : CameraChange
         player = other;
     }
 
+    public IEnumerator DeleteCamera()
+    {
+        while(ended || lockOn)
+        {
+            yield return new WaitForSeconds(.1f);
+        }
+        Destroy(gameObject);
+    }
+
     public bool Entered()
     {
         return lockOn;
