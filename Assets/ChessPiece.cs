@@ -20,8 +20,13 @@ public class ChessPiece : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         player = collision.collider.transform;
-        if (player != null && ChessManager.Instance.board.attached == null && !dropped)
+        if (player != null && player.GetComponent<PlayerControl>().CheckPart("arm") && ChessManager.Instance.board.attached == null && !dropped)
         {
+            foreach(Part part in player.GetComponent<PlayerControl>().GetPartByUsage("usage"))
+            {
+                part.dur -= 100 / 5;
+                player.GetComponent<PlayerControl>().UpdateBar(part);
+            }
             ChessManager.Instance.board.Attach(this);
             Vector3 tempOriginalScale = transform.localScale;
             transform.localScale = Vector3.one;

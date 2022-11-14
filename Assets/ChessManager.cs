@@ -29,6 +29,7 @@ public class ChessManager
     public void RemoveBoard()
     {
         board.Reset();
+        board.ResetTileColor();
         board = null;
         Release();
     }

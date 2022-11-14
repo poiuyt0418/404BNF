@@ -28,12 +28,18 @@ public class WorldExit : MonoBehaviour
     // Update is called once per frame
     void OnTriggerEnter()
     {
+        int missing = 0;
         foreach(string part in exitRequirement)
         {
             if (!player.CheckPart(part))
             {
                 Debug.Log("Missing a " + part);
+                missing++;
             }
+        }
+        if (missing > 0)
+        {
+            return;
         }
         objText.text = "You have escaped.";
         Debug.Log(timer / (float)timeForLevel);
@@ -59,7 +65,7 @@ public class WorldExit : MonoBehaviour
         Time.timeScale = 0;
         yield return waitForSecondsRealtime;
         Time.timeScale = prevTimeScale;
-        SceneManager.LoadScene(levelSelectIndex);
+        SceneManager.LoadScene(2);
     }
 
     void Update()

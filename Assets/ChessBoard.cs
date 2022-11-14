@@ -11,8 +11,12 @@ public class ChessBoard : MonoBehaviour
     TextMeshProUGUI buttonText;
     [SerializeField]
     Door door;
+    ChessCamera cameraControl;
     [SerializeField]
-    ChessRow[] rows;
+    GameObject blackTile, whiteTile;
+    [SerializeField]
+    int boardWidth, boardDepth;
+    public List<ChessRow> rows;
     [SerializeField]
     ChessTilePiece[] tilePieces;
     [SerializeField]
@@ -20,13 +24,13 @@ public class ChessBoard : MonoBehaviour
     [HideInInspector]
     public ChessPiece attached;
     [HideInInspector]
-    public int boardWidth, boardHeight, coroutines;
+    public int coroutines;
     [HideInInspector]
-    public float tileWidth, tileHeight;
+    public Vector3 tileSize;
     [HideInInspector]
     public bool executing;
     [HideInInspector]
-    public Vector3 boardCenter;
+    public Vector3 boardFirstTile;
     int pieceCount;
     bool resetButton, solved;
     enum ChessEvent { none,run,die };
@@ -62,11 +66,36 @@ public class ChessBoard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        boardCenter = transform.position;
-        boardWidth = rows.Length;
-        boardHeight = rows[0].transform.childCount;
-        tileWidth = Mathf.Abs((rows[0].transform.Find("A").transform.position.x - rows[boardWidth - 1].transform.Find(((char)(65 + boardHeight - 1)).ToString()).transform.position.x) / (boardWidth - 1));
-        tileHeight = Mathf.Abs((rows[0].transform.Find("A").transform.position.z - rows[boardWidth - 1].transform.Find(((char)(65 + boardHeight - 1)).ToString()).transform.position.z) / (boardHeight - 1));
+        GameObject go;
+        rows = new List<ChessRow>();
+        tileSize = blackTile.GetComponent<Renderer>().bounds.size;
+        boardFirstTile = transform.position;
+        for(int i = 0; i < boardDepth; i++)
+        {
+            go = new GameObject();
+            ChessRow row = go.AddComponent<ChessRow>();
+            row.blackTile = blackTile;
+            row.whiteTile = whiteTile;
+            row.col = boardWidth;
+            if (i % 2 == 1)
+            {
+                row.blackFirst = true;
+            }
+            go.name = i.ToString();
+            go.transform.position = new Vector3(boardFirstTile.x, boardFirstTile.y, boardFirstTile.z + tileSize.z * i);
+            go.transform.SetParent(transform);
+            row.SpawnTiles();
+            rows.Add(go.GetComponent<ChessRow>());
+        }
+        go = new GameObject();
+        go.name = "CameraControl";
+        cameraControl = go.AddComponent<ChessCamera>();
+        go.transform.parent = transform;
+        cameraControl.SetCollider(boardWidth, boardDepth, tileSize);
+        //boardWidth = rows.Length;
+        //boardDepth = rows[0].transform.childCount;
+        //tileWidth = Mathf.Abs((rows[0].transform.Find("A").transform.position.x - rows[boardWidth - 1].transform.Find(((char)(65 + boardDepth - 1)).ToString()).transform.position.x) / (boardWidth - 1));
+        //tileDepth = Mathf.Abs((rows[0].transform.Find("A").transform.position.z - rows[boardWidth - 1].transform.Find(((char)(65 + boardDepth - 1)).ToString()).transform.position.z) / (boardDepth - 1));
     }
 
     public void Reset()
@@ -80,6 +109,14 @@ public class ChessBoard : MonoBehaviour
         buttonText.text = "Reset";
         coroutines = 0;
         resetButton = false;
+    }
+
+    public void ResetTileColor()
+    {
+        foreach (ChessRow row in rows)
+        {
+            row.ResetTileColor();
+        }
     }
 
     public void Release()
@@ -134,11 +171,11 @@ public class ChessBoard : MonoBehaviour
             tile.pos = p.tileVector;
             if(tile.tileEvent == ChessEvent.die)
             {
-                rows[(int)p.tileVector.y].Get((int)p.tileVector.x).GetComponent<Renderer>().material.color = new Color(1,0,0);
+                rows[(int)p.tileVector.y].Get((int)p.tileVector.x).GetComponent<Renderer>().material.color = new Color(0, 1,0);
             }
             else if (tile.tileEvent == ChessEvent.run)
             {
-                rows[(int)p.tileVector.y].Get((int)p.tileVector.x).GetComponent<Renderer>().material.color = new Color(0, 1, 0);
+                rows[(int)p.tileVector.y].Get((int)p.tileVector.x).GetComponent<Renderer>().material.color = new Color(0, 0, 1);
             }
             tiles.Add(p.tileVector, tile);
         }
@@ -148,7 +185,7 @@ public class ChessBoard : MonoBehaviour
 
     Vector3 ConvertTileToPos(Vector2 tileVector, ChessPiece piece)
     {
-        return new Vector3(boardCenter.x - (tileWidth * boardWidth - tileWidth) / 2 + tileVector.x * tileWidth, boardCenter.y + piece.transform.localScale.y, boardCenter.z - (tileHeight * boardHeight - tileHeight) / 2 + tileVector.y * tileHeight);
+        return new Vector3(boardFirstTile.x + tileVector.x * tileSize.x, boardFirstTile.y + piece.transform.localScale.y, boardFirstTile.z + tileVector.y * tileSize.z);
     }
 
     public IEnumerator DoEvents()
@@ -156,7 +193,6 @@ public class ChessBoard : MonoBehaviour
         resetButton = true;
         executing = true;
         pieceCount = 0;
-        Debug.Log("a");
         if(attached)
         {
             cg.alpha = 0f;
@@ -204,8 +240,8 @@ public class ChessBoard : MonoBehaviour
     {
         if(attached != null)
         {
-            int posX = (int)((attached.transform.position.x - boardCenter.x) / tileWidth + (tileWidth * boardWidth) / 2);
-            int posZ = (int)((attached.transform.position.z - boardCenter.z) / tileHeight + (tileHeight * boardHeight) / 2);
+            int posX = (int)(((attached.transform.position.x - boardFirstTile.x) + .5f) / tileSize.x);
+            int posZ = (int)(((attached.transform.position.z - boardFirstTile.z) + .5f) / tileSize.z);
             Vector2 tileVector = new Vector2(posX, posZ);
             if (!tiles.ContainsKey(tileVector))
             {
@@ -254,6 +290,10 @@ public class ChessBoard : MonoBehaviour
         while (frames < maxFrames && piece != null)
         {
             yield return new WaitForSeconds(Time.deltaTime);
+            if(piece == null)
+            {
+                break;
+            }
             frames++;
             float t = frames / (float)maxFrames;
             piece.transform.position = Vector3.Lerp(oldPos, newPos, t);
@@ -270,6 +310,10 @@ public class ChessBoard : MonoBehaviour
     IEnumerator DestroyPiece(ChessPiece piece)
     {
         yield return new WaitForSeconds(.5f);
+        if (piece == null)
+        {
+            yield break;
+        }
         Destroy(piece.gameObject);
         coroutines--;
     }

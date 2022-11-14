@@ -1,0 +1,179 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8521774398188696983
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: boardDepth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: boardWidth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[0].color
+      value: black
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[1].color
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[1].tileEvent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[2].tileEvent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[3].tileEvent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[4].tileEvent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[5].tileEvent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[6].tileEvent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[7].tileEvent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[8].tileEvent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[0].tileVector.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[0].tileVector.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[1].tileVector.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[1].tileVector.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[2].tileVector.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[3].tileVector.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[4].tileVector.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[4].tileVector.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[5].tileVector.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[5].tileVector.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[6].tileVector.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[6].tileVector.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[7].tileVector.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[7].tileVector.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440086, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: tilePieces.Array.data[8].tileVector.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440087, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440087, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440087, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440087, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440087, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440087, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440087, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440087, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440087, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440087, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440087, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572240770440088, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_Name
+      value: SecondPuzzleDoorPuzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572241234234083, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_Depth
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}

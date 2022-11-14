@@ -1,9 +1,16 @@
+using UnityEngine;
+
+[System.Serializable]
 public class Part
 {
+    [SerializeField]
     string type;
+    [SerializeField]
     float durability;
+    [SerializeField]
     float speedChange = 5;
     enum Usage { step, usage, time };
+    [SerializeField]
     Usage durabilityLoss;
 
     public string name

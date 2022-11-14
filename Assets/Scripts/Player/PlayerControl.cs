@@ -14,6 +14,7 @@ public class PlayerControl : MonoBehaviour
     //public Rigidbody rb;
     public NavMeshAgent movementControl;
     PlayerInput controls;
+    [SerializeField]
     Part[] parts = new Part[3];
     string[] partIndexes = { "body", "arm", "leg" };
     BarControl[] partBars = new BarControl[3];
@@ -76,7 +77,7 @@ public class PlayerControl : MonoBehaviour
 
     public bool CheckPart(string type)
     {
-        return parts[Array.IndexOf(partIndexes, type)] != null;
+        return parts[Array.IndexOf(partIndexes, type)].name != "";
     }
 
     public void DestroyPart(int index)
@@ -130,13 +131,21 @@ public class PlayerControl : MonoBehaviour
             }
             foreach (Part element in GetPartByUsage("step"))
             {
-                element.dur -= .05f * movementControl.velocity.magnitude;
-                partBars[Array.IndexOf(partIndexes, element.name)].SetValue();
-                if (element.dur < 0)
+                if(element.name != "")
                 {
-                    DestroyPart(Array.IndexOf(partIndexes, element.name));
+                    element.dur -= .05f * movementControl.velocity.magnitude;
+                    UpdateBar(element);
                 }
             }
+        }
+    }
+
+    public void UpdateBar(Part part)
+    {
+        partBars[Array.IndexOf(partIndexes, part.name)].SetValue();
+        if (part.dur < 0)
+        {
+            DestroyPart(Array.IndexOf(partIndexes, part.name));
         }
     }
 
