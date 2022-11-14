@@ -44,6 +44,18 @@ public class WorldQTEManager : MonoBehaviour
         partType = part;
     }
 
+    public IEnumerator Respawn(GameObject go)
+    {
+        GameObject obj = Instantiate(go);
+        obj.SetActive(false);
+        while(partType != null)
+        {
+            yield return null;
+        }
+        yield return new WaitForSeconds(2f);
+        obj.SetActive(true);
+    }
+
     void runQTE()
     {
         events = qte.amount;
@@ -117,6 +129,7 @@ public class WorldQTEManager : MonoBehaviour
                 Destroy(background);
                 part = new Part();
                 part.name = partType;
+                partType = null;
                 part.dur = durability;
                 part.SetUsage();
                 player.AddPart(part);

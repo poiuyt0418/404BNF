@@ -58,8 +58,18 @@ public class ChessCamera : CameraChange
             yield return new WaitForSeconds(.1f);
         }
         ChessManager.Instance.board.ResetTileColor();
+        ChessManager.Instance.board.ButtonOff();
         lockOn = false;
         player = other;
+    }
+
+    public IEnumerator DeleteCamera()
+    {
+        while(ended || lockOn)
+        {
+            yield return new WaitForSeconds(.1f);
+        }
+        Destroy(gameObject);
     }
 
     public bool Entered()
