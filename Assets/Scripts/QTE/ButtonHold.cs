@@ -37,10 +37,4 @@ public class ButtonHold : QTEButton
         press++;
         StartCoroutine(HoldEvent(press));
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

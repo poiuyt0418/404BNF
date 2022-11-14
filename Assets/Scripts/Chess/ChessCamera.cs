@@ -14,11 +14,11 @@ public class ChessCamera : CameraChange
     {
         BoxCollider col = gameObject.AddComponent<BoxCollider>();
         col.isTrigger = true;
-        transform.localPosition = new Vector3((width - 1) / 2f * tileSize.x, 0, (depth - 1) / 2f * tileSize.z);
-        transform.localScale = new Vector3(tileSize.x * width, 1, tileSize.z * depth);
+        transform.localPosition = new Vector3((width - 1.5f) / 2f * tileSize.x, 0, (depth - 1.5f) / 2f * tileSize.z);
+        transform.localScale = new Vector3(tileSize.x * width + tileSize.x, 1, tileSize.z * depth + tileSize.z);
         GameObject go = new GameObject();
         go.transform.SetParent(transform);
-        go.transform.localPosition = new Vector3(0, Mathf.Max(width * tileSize.x, depth * tileSize.z) + 3, 0);
+        go.transform.localPosition = new Vector3(0, Mathf.Max(width * tileSize.x, depth * tileSize.z) + 4, 0);
         go.transform.Rotate(90.0f, 0.0f, 0.0f);
         cameraPos = go.transform;
     }

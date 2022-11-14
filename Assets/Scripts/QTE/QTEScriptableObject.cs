@@ -10,9 +10,9 @@ public class QTEScriptableObject : ScriptableObject
     [SerializeField]
     GameObject backgroundImage;
     [SerializeField]
-    int numPress, qteDuration;
+    int numPress;
     [SerializeField]
-    float holdDuration;
+    float qteDuration, holdDuration;
     [SerializeField]
     Vector2 xy;
     [SerializeField]
@@ -26,7 +26,7 @@ public class QTEScriptableObject : ScriptableObject
     {
         get { return numPress; }
     }
-    public int duration
+    public float duration
     {
         get { return qteDuration; }
     }

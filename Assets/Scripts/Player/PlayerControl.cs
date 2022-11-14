@@ -78,7 +78,7 @@ public class PlayerControl : MonoBehaviour
 
     public bool CheckPart(string type)
     {
-        return parts[Array.IndexOf(partIndexes, type)].name != null && parts[Array.IndexOf(partIndexes, type)].name != "";
+        return parts[Array.IndexOf(partIndexes, type)] != null && parts[Array.IndexOf(partIndexes, type)].name != "";
     }
 
     public void DestroyPart(int index)

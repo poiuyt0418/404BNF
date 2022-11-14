@@ -42,10 +42,4 @@ public class ButtonDrag : QTEButton
         if (rect.localPosition.x <= scaledTarget.x  && scaledTarget.x <= rect.localPosition.x + rect.rect.width && rect.localPosition.y <= scaledTarget.y && scaledTarget.y <= rect.localPosition.y + rect.rect.height)
             Succeed();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -120,7 +120,7 @@ public class WorldQTEManager : MonoBehaviour
         {
             if (currQTE != null)
             {
-                durability -= 100f / (events+1);
+                durability -= 100f / (events);
                 Cursor.visible = true;
                 Destroy(currQTE);
             }
@@ -135,6 +135,9 @@ public class WorldQTEManager : MonoBehaviour
                 currQTE.GetComponent<QTEButton>().targetPos = (type == "random") ? new Vector2(Random.Range(1f, 2f) * (Random.Range(0, 1) * 2 - 1), Random.Range(1f, 2f) * (Random.Range(0, 1) * 2 - 1)) : target;
                 currQTE.transform.SetParent(canvas.transform, false);
                 currQTE.GetComponent<RectTransform>().localPosition = currButton;
+                currQTE.GetComponent<QTEButton>().lifetime = duration;
+                currQTE.GetComponent<QTEButton>().endTime = timer;
+
             }
             else
             {

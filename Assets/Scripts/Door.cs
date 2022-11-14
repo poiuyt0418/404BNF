@@ -22,8 +22,11 @@ public class Door : MonoBehaviour
     public void Activate()
     {
         door.SetActive(false);
-        inLink.activated = true;
-        outLink.activated = true;
+        if(inLink != null)
+        {
+            inLink.activated = true;
+            outLink.activated = true;
+        }
     }
 
     public void Deactivate()
@@ -35,7 +38,7 @@ public class Door : MonoBehaviour
 
     bool Occupied(OffMeshLink link, Transform cameraPos)
     {
-        if (link.occupied)
+        if (link != null && link.occupied)
         {
             Vector3 destination = link.endTransform.position;
             destination.y = player.transform.position.y;

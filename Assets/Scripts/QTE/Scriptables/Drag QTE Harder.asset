@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c28abe82972599240bd28e6a5d0c2a86, type: 3}
-  m_Name: Random QTE
+  m_Name: Drag QTE Harder
   m_EditorClassIdentifier: 
-  qteType: 3
-  backgroundImage: {fileID: 919132149155446097, guid: 06408eba69c3f9a4e908b92715d900aa, type: 3}
+  qteType: 1
+  backgroundImage: {fileID: 9039039375229727622, guid: f06ce391d602f8d44a26bc21cf8f3905, type: 3}
   numPress: 5
-  qteDuration: 1
-  holdDuration: 0.3
-  xy: {x: 0.5, y: 0.5}
+  qteDuration: 1.5
+  holdDuration: 0
+  xy: {x: 1.5, y: 0}
   qteScreenSpace: {fileID: 11400000, guid: c682e0a317479264a933946926f29812, type: 2}
