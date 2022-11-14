@@ -169,10 +169,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1037572240770440088, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
       propertyPath: m_Name
-      value: SecondPuzzleDoorPuzzle
+      value: SecondPuzzleDoorPuzzle Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1037572241234234083, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
       propertyPath: m_Depth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572241323333824, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -295.51303
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037572241883703112, guid: 42528966982f0f34dbb8b9bec82434b6, type: 3}
+      propertyPath: m_UiScaleMode
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
