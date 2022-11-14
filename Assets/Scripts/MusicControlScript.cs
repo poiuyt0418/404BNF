@@ -5,10 +5,21 @@ using UnityEngine;
 
 public class MusicControlScript : MonoBehaviour
 {
-   public static MusicControlScript instance;
+    public static MusicControlScript instance;
+    
+    public static MusicControlScript Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new MusicControlScript();
+            }
+            return instance;
+        }
+    }
 
-        private void Awake()
-
+    private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
 
