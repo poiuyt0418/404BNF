@@ -50,7 +50,7 @@ public class DungeonGenerator : MonoBehaviour
     public Rules[] rooms;
     //public GameObject[] rooms;
     public Vector2 offset;
-    bool spawn = false;
+    //bool spawn = false;
     List<Cell> board;
     public RoomBehavior roomB {get; }
 
