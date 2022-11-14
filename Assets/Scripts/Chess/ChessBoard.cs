@@ -104,8 +104,7 @@ public class ChessBoard : MonoBehaviour
         chessEvents = new Stack<ChessTile>();
         attached = null;
         executing = false;
-        cg.alpha = 0f;
-        cg.interactable = false;
+        ButtonOff();
         buttonText.text = "Reset";
         coroutines = 0;
         resetButton = false;
@@ -123,8 +122,7 @@ public class ChessBoard : MonoBehaviour
     {
         if(solved)
         {
-            cg.alpha = 0f;
-            cg.interactable = false;
+            ButtonOff();
             return;
         }
         if (attached != null)
@@ -197,8 +195,7 @@ public class ChessBoard : MonoBehaviour
         pieceCount = 0;
         if(attached)
         {
-            cg.alpha = 0f;
-            cg.interactable = false;
+            ButtonOff();
             Destroy(attached.gameObject);
             attached = null;
             pieceCount = 1;
@@ -227,8 +224,7 @@ public class ChessBoard : MonoBehaviour
         }
         if(pieceCount <= 0)
         {
-            cg.alpha = 0f;
-            cg.interactable = false;
+            ButtonOff();
             solved = true;
             StartCoroutine(cameraControl.ExitBoard(ChessManager.Instance.player.transform));
             door.Activate();
@@ -319,6 +315,12 @@ public class ChessBoard : MonoBehaviour
         }
         Destroy(piece.gameObject);
         coroutines--;
+    }
+
+    public void ButtonOff()
+    {
+        cg.alpha = 0f;
+        cg.interactable = false;
     }
 
     public void Attach(ChessPiece p)
