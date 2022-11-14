@@ -18,6 +18,6 @@ public class BarControl : MonoBehaviour
 
     public void SetValue()
     {
-        slider.value = player.PartDurability(partType);
+        slider.value = Mathf.Max(0,player.PartDurability(partType));
     }
 }

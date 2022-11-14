@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class ChessPiece : MonoBehaviour
 {
     Transform player;
+    public Vector2 tileVector;
     Vector3 relativePosition;
     float relativeRot;
     public bool dropped = false;

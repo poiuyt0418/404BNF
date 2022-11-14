@@ -51,7 +51,7 @@ public class ChessCamera : CameraChange
         }
     }
 
-    IEnumerator ExitBoard(Transform other)
+    public IEnumerator ExitBoard(Transform other)
     {
         while(ChessManager.Instance.board.executing)
         {

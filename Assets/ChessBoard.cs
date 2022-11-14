@@ -160,10 +160,12 @@ public class ChessBoard : MonoBehaviour
             if (p.color.ToLower() == "black")
             {
                 piece = Instantiate(black, ConvertTileToPos(p.tileVector, black), Quaternion.identity);
+                piece.tileVector = p.tileVector;
             }
             else if(p.color.ToLower() == "white")
             {
                 piece = Instantiate(white, ConvertTileToPos(p.tileVector, white), Quaternion.identity);
+                piece.tileVector = p.tileVector;
             }
             ChessTile tile = new ChessTile();
             tile.piece = piece;
@@ -228,6 +230,7 @@ public class ChessBoard : MonoBehaviour
             cg.alpha = 0f;
             cg.interactable = false;
             solved = true;
+            StartCoroutine(cameraControl.ExitBoard(ChessManager.Instance.player.transform));
             door.Activate();
         }
         else
@@ -321,6 +324,7 @@ public class ChessBoard : MonoBehaviour
     public void Attach(ChessPiece p)
     {
         attached = p;
+        tiles[p.tileVector].piece = null;
         buttonText.text = "Drop";
         cg.alpha = 1f;
         cg.interactable = true;
