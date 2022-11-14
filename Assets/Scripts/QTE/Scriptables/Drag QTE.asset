@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Drag QTE
   m_EditorClassIdentifier: 
   qteType: 1
-  backgroundImage: {fileID: 9039039375229727622, guid: f06ce391d602f8d44a26bc21cf8f3905, type: 3}
+  backgroundImage: {fileID: 5805274652783859885, guid: 50fa9ae939898004da1c4fc94d75f1cb, type: 3}
   numPress: 3
   qteDuration: 5
   holdDuration: 0

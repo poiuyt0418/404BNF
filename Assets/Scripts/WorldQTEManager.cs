@@ -23,6 +23,7 @@ public class WorldQTEManager : MonoBehaviour
     PlayerControl player;
     string partType;
     Part part;
+    int[] stars = { 1, 1, 1 };
     // Start is called before the first frame update
     class QTEInstance
     {
@@ -40,8 +41,19 @@ public class WorldQTEManager : MonoBehaviour
 
     public void TriggerQTE(QTEScriptableObject triggered, string part)
     {
+        stars[Array.IndexOf(player.partIndexes, part)] = Mathf.Max(stars[Array.IndexOf(player.partIndexes, part)]-1,-1);
         qte = triggered;
         partType = part;
+    }
+
+    public int Stars()
+    {
+        int total = 0;
+        foreach (int i in stars)
+        {
+            total += i;
+        }
+        return total;
     }
 
     public IEnumerator Respawn(GameObject go)
@@ -58,6 +70,7 @@ public class WorldQTEManager : MonoBehaviour
 
     void runQTE()
     {
+        qteStack = new Stack();
         events = qte.amount;
         duration = qte.duration;
         type = qte.type;

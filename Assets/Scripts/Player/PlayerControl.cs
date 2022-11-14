@@ -16,9 +16,10 @@ public class PlayerControl : MonoBehaviour
     PlayerInput controls;
     [SerializeField]
     Part[] parts = new Part[3];
-    string[] partIndexes = { "body", "arm", "leg" };
+    public string[] partIndexes = { "body", "arm", "leg" };
     BarControl[] partBars = new BarControl[3];
     public BarControl body, arm, leg;
+    public int movementQueued = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -122,18 +123,25 @@ public class PlayerControl : MonoBehaviour
     IEnumerator WaitForPath()
     {
         yield return movementControl.pathPending;
+        movementQueued++;
+        int currMovement = movementQueued;
         while (true)
         {
             yield return new WaitForSeconds(.1f);
-            if (movementControl.pathPending || movementControl.remainingDistance == 0)
+            if (movementQueued > currMovement || movementControl.remainingDistance <= 0.01f)
             {
+                movementQueued--;
                 yield break;
+            }
+            else if(movementQueued < currMovement)
+            {
+                currMovement = movementQueued;
             }
             foreach (Part element in GetPartByUsage("step"))
             {
                 if(element.name != "")
                 {
-                    element.dur -= .05f * movementControl.velocity.magnitude;
+                    element.dur -= .1f * movementControl.velocity.magnitude;
                     UpdateBar(element);
                 }
             }
@@ -142,6 +150,10 @@ public class PlayerControl : MonoBehaviour
 
     public void UpdateBar(Part part)
     {
+        if(Array.IndexOf(partIndexes, part.name) < 0)
+        {
+            return;
+        }
         partBars[Array.IndexOf(partIndexes, part.name)].SetValue();
         if (part.dur < 0)
         {
