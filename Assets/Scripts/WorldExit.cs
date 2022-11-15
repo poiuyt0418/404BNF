@@ -39,6 +39,7 @@ public class WorldExit : MonoBehaviour
         }
         if (missing > 0)
         {
+            MusicControlScript.Instance.PlayError();
             return;
         }
         objText.text = "You have escaped.";

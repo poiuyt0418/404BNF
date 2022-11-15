@@ -31,6 +31,14 @@ public class MusicControlScript : MonoBehaviour
     public void PlayQTE()
     {
         audioSource.clip = qteSuccess;
+        audioSource.pitch = 2;
+        audioSource.Play();
+    }
+
+    public void PlayError()
+    {
+        audioSource.clip = qteSuccess;
+        audioSource.pitch = 1;
         audioSource.Play();
     }
 
