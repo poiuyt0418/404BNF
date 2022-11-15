@@ -8,6 +8,8 @@ public class ChessBoard : MonoBehaviour
     [SerializeField]
     CanvasGroup cg;
     [SerializeField]
+    GameObject canvas;
+    [SerializeField]
     TextMeshProUGUI buttonText;
     [SerializeField]
     Door door;
@@ -120,6 +122,7 @@ public class ChessBoard : MonoBehaviour
 
     public void Release()
     {
+        Debug.Log("a");
         if (solved)
         {
             ButtonOff();
@@ -181,6 +184,8 @@ public class ChessBoard : MonoBehaviour
         }
         cg.alpha = 1f;
         cg.interactable = true;
+        canvas.SetActive(false);
+        canvas.SetActive(true);
     }
 
     Vector3 ConvertTileToPos(Vector2 tileVector, ChessPiece piece)

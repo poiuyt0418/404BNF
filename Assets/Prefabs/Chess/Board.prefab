@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cg: {fileID: 1037572241323333852}
+  canvas: {fileID: 1037572241883703115}
   buttonText: {fileID: 1037572241672230661}
   door: {fileID: 0}
   blackTile: {fileID: 8831143385507469478, guid: 9c84c1f993e00fe4dae519b409950782, type: 3}
