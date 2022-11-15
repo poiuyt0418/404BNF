@@ -6,6 +6,15 @@ using UnityEngine;
 public class MusicControlScript : MonoBehaviour
 {
     public static MusicControlScript instance;
+    [SerializeField]
+    AudioSource audioSource;
+    [SerializeField]
+    AudioClip qteSuccess;
+
+    MusicControlScript()
+    {
+        
+    }
     
     public static MusicControlScript Instance
     {
@@ -17,6 +26,12 @@ public class MusicControlScript : MonoBehaviour
             }
             return instance;
         }
+    }
+
+    public void PlayQTE()
+    {
+        audioSource.clip = qteSuccess;
+        audioSource.Play();
     }
 
     private void Awake()

@@ -17,6 +17,7 @@ public class ButtonHold : QTEButton
         yield return new WaitForSeconds(duration);
         if(press == count && held)
         {
+            MusicControlScript.Instance.PlayQTE();
             Succeed();
         }
     }

@@ -12,6 +12,7 @@ public class ButtonClick : QTEButton
 
     void OnMouseDown()
     {
+        MusicControlScript.Instance.PlayQTE();
         Succeed();
     }
 }

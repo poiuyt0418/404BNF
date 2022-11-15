@@ -40,6 +40,10 @@ public class ButtonDrag : QTEButton
         rect.localPosition = new Vector3(Input.mousePosition.x - offset.x, Input.mousePosition.y - offset.y,-1);
         //if(rect.rect.Contains(transform.TransformPoint(scaledTarget)))
         if (rect.localPosition.x <= scaledTarget.x  && scaledTarget.x <= rect.localPosition.x + rect.rect.width && rect.localPosition.y <= scaledTarget.y && scaledTarget.y <= rect.localPosition.y + rect.rect.height)
+        {
+            MusicControlScript.Instance.PlayQTE();
             Succeed();
+        }
+            
     }
 }
