@@ -120,7 +120,7 @@ public class ChessBoard : MonoBehaviour
 
     public void Release()
     {
-        if(solved)
+        if (solved)
         {
             ButtonOff();
             return;
