@@ -58,7 +58,7 @@ public class WorldQTEManager : MonoBehaviour
 
     public IEnumerator Respawn(GameObject go, float time)
     {
-        if(time<0)
+        if(time>0)
         {
             GameObject obj = Instantiate(go);
             obj.SetActive(false);
