@@ -7,6 +7,7 @@ public class QTETrigger : MonoBehaviour
     public QTEScriptableObject qte;
     public WorldQTEManager manager;
     public string partType;
+    public float respawnTime = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class QTETrigger : MonoBehaviour
     void OnTriggerEnter()
     {
         manager.TriggerQTE(qte, partType);
-        manager.StartCoroutine(manager.Respawn(gameObject));
+        manager.StartCoroutine(manager.Respawn(gameObject,respawnTime));
         TriggerEffect();
         Destroy(gameObject);
     }

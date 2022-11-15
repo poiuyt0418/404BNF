@@ -56,16 +56,19 @@ public class WorldQTEManager : MonoBehaviour
         return total;
     }
 
-    public IEnumerator Respawn(GameObject go)
+    public IEnumerator Respawn(GameObject go, float time)
     {
-        GameObject obj = Instantiate(go);
-        obj.SetActive(false);
-        while(partType != null)
+        if(time<0)
         {
-            yield return null;
+            GameObject obj = Instantiate(go);
+            obj.SetActive(false);
+            while (partType != null)
+            {
+                yield return null;
+            }
+            yield return new WaitForSeconds(time);
+            obj.SetActive(true);
         }
-        yield return new WaitForSeconds(2f);
-        obj.SetActive(true);
     }
 
     void runQTE()
