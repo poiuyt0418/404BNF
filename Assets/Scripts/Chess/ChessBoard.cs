@@ -125,7 +125,6 @@ public class ChessBoard : MonoBehaviour
         Debug.Log("a");
         if (solved)
         {
-            Destroy(canvas);
             ButtonOff();
             return;
         }
