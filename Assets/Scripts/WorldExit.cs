@@ -66,7 +66,7 @@ public class WorldExit : MonoBehaviour
         Time.timeScale = 0;
         yield return waitForSecondsRealtime;
         Time.timeScale = prevTimeScale;
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     void Update()
