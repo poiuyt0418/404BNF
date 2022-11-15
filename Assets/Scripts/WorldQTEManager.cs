@@ -78,15 +78,18 @@ public class WorldQTEManager : MonoBehaviour
         holdDuration = qte.holdFor;
         Shape shape = qte.space;
         //qteImage = qte.image;
-        background = Instantiate(qte.background) as GameObject; 
-        background.transform.SetParent(canvas.transform, false);
+        if(qte.background != null)
+        {
+            background = Instantiate(qte.background) as GameObject;
+            background.transform.SetParent(canvas.transform, false);
+            background.transform.localScale = Vector3.one * 5000;
+            background.layer = 5;
+            background.transform.localPosition = new Vector3((shape.Center().x - .5f) * screenWidth, (shape.Center().y - .5f) * -.5f * screenHeight, 10f);
+        }
         //background.transform.position = canvasCamera.ScreenToViewportPoint(new Vector3(shape.Center().x * Screen.width, Screen.height - shape.Center().y * Screen.height));
         //RectTransform backgroundRect = background.GetComponent<RectTransform>();
         //Debug.Log(new Vector3((shape.Center().x-.5f) * screenWidth, (shape.Center().y-.5f) * -screenHeight));
         //background.GetComponent<RectTransform>().localPosition = new Vector3((shape.Center().x - .5f) * screenWidth, (shape.Center().y - .5f) * -screenHeight);
-        background.transform.localScale = Vector3.one * 5000;
-        background.layer = 5;
-        background.transform.localPosition = new Vector3((shape.Center().x - .5f) * screenWidth, (shape.Center().y - .5f) * -.5f*screenHeight,10f);
         for (int i = 0; i < events; i++)
         {
             QTEInstance instance = new QTEInstance();
@@ -142,7 +145,8 @@ public class WorldQTEManager : MonoBehaviour
             else
             {
                 player.MoveEnable();
-                Destroy(background);
+                if(background != null)
+                    Destroy(background);
                 part = new Part();
                 part.name = partType;
                 partType = null;

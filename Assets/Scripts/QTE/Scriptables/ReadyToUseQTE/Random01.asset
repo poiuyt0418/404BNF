@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28abe82972599240bd28e6a5d0c2a86, type: 3}
+  m_Name: Random01
+  m_EditorClassIdentifier: 
+  qteType: 3
+  backgroundImage: {fileID: 0}
+  numPress: 5
+  qteDuration: 1.5
+  holdDuration: 0.5
+  xy: {x: 0, y: 0}
+  qteScreenSpace: {fileID: 11400000, guid: 31a96cf283e6d8a4ab56346fbe23840e, type: 2}
