@@ -122,7 +122,6 @@ public class ChessBoard : MonoBehaviour
 
     public void Release()
     {
-        Debug.Log("a");
         if (solved)
         {
             ButtonOff();

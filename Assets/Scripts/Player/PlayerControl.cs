@@ -29,7 +29,6 @@ public class PlayerControl : MonoBehaviour
         partBars[0] = body;
         partBars[1] = arm;
         partBars[2] = leg;
-        MoveEnable();
         //if(rb==null)
         //    rb = GetComponent<Rigidbody>();
     }

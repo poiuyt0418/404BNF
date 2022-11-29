@@ -13,6 +13,7 @@ public class CameraChange : MonoBehaviour
     protected Quaternion oldCameraRot;
     protected CameraControl camControl;
     protected Transform player;
+    protected float frame;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,12 +29,15 @@ public class CameraChange : MonoBehaviour
     {
         if (other.GetComponent<PlayerControl>() != null)
         {
+            player = other.transform;
+            other.GetComponent<PlayerControl>().MoveDisable();
             oldCameraPos = Camera.main.transform.position;
             oldCameraRot = Camera.main.transform.rotation;
             oldCameraPos.y = cameraY;
             lockOn = true;
             camControl.enabled = false;
             ended = true;
+            frame = 0;
         }
     }
 
@@ -43,6 +47,7 @@ public class CameraChange : MonoBehaviour
         {
             lockOn = false;
             player = other.transform;
+            frame = 0;
             //Camera.main.transform.position = oldCameraPos;
             //Camera.main.transform.rotation = oldCameraRot;
         }
@@ -53,18 +58,23 @@ public class CameraChange : MonoBehaviour
     {
         if(lockOn)
         {
-            Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, cameraPos.rotation, Time.deltaTime * speed);
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraPos.position, Time.deltaTime * speed);
+            if(frame+speed <= 180)
+            {
+                Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, cameraPos.rotation, frame / 180f * speed);
+                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraPos.position, frame / 180f * speed);
+                frame++;
+            }
+            else
+            {
+                player.GetComponent<PlayerControl>().MoveEnable();
+            }
         } else if(camControl.enabled == false && ended)
         {
-            if(Camera.main.transform.position.y != cameraY || Camera.main.transform.rotation != oldCameraRot)
+            if(frame+speed <= 180)
             {
-                Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, oldCameraRot, Time.deltaTime * 3 * speed);
-                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(player.position.x, oldCameraPos.y, player.position.z), Time.deltaTime * 5 * speed);
-                if (Mathf.Abs(Camera.main.transform.position.y - cameraY) < .01)
-                {
-                    Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, cameraY, Camera.main.transform.position.z);
-                }
+                Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, oldCameraRot, frame / 180f * speed);
+                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(player.position.x, oldCameraPos.y, player.position.z), frame / 180f * speed);
+                frame++;
             } else
             {
                 camControl.enabled = true;

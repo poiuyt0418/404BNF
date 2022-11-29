@@ -39,6 +39,8 @@ public class ChessCamera : CameraChange
             camControl.enabled = false;
             ended = true;
             ChessManager.Instance.AddBoard(transform.parent.GetComponent<ChessBoard>());
+            frame = 0;
+            player = other.transform;
         }
     }
 
@@ -48,6 +50,7 @@ public class ChessCamera : CameraChange
         {
             StartCoroutine(ChessManager.Instance.board.DoEvents());
             StartCoroutine(ExitBoard(other.transform));
+            frame = 0;
         }
     }
 

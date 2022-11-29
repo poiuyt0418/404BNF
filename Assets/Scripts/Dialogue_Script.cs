@@ -9,12 +9,14 @@ public class Dialogue_Script : MonoBehaviour
     public TextMeshProUGUI textComponent;
     public string[] lines;
     public float textSpeed;
+    PlayerControl player;
 
     private int index;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerControl>();
         textComponent.text = string.Empty;
         StartDialogue();
     }
@@ -39,6 +41,7 @@ public class Dialogue_Script : MonoBehaviour
     void StartDialogue()
     {
         index = 0;
+        player.MoveDisable();
         StartCoroutine(TypeLine());
     }
 
@@ -56,12 +59,17 @@ public class Dialogue_Script : MonoBehaviour
     {
         if (index < lines.Length -1)
         {
+            if(player.MoveEnabled())
+            {
+                player.MoveDisable();
+            }
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
         }
         else
         {
+            player.MoveEnable();
             gameObject.SetActive(false);
         }
     
