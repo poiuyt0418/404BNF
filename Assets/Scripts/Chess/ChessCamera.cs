@@ -52,7 +52,8 @@ public class ChessCamera : CameraChange
     {
         if (other.GetComponent<PlayerControl>() != null)
         {
-            StartCoroutine(ChessManager.Instance.board.DoEvents());
+            if(lockOn)
+                StartCoroutine(ChessManager.Instance.board.DoEvents());
             StartCoroutine(ExitBoard(other.transform));
             frame = 0;
             player.GetComponent<PlayerControl>().MoveEnable();
@@ -69,12 +70,15 @@ public class ChessCamera : CameraChange
 
     public IEnumerator ExitBoard(Transform other)
     {
-        while(ChessManager.Instance.board.executing)
+        if(ChessManager.Instance.board != null)
         {
-            yield return new WaitForSeconds(.1f);
+            while (ChessManager.Instance.board.executing)
+            {
+                yield return new WaitForSeconds(.1f);
+            }
+            ChessManager.Instance.board.ResetTileColor();
+            ChessManager.Instance.board.ButtonOff();
         }
-        ChessManager.Instance.board.ResetTileColor();
-        ChessManager.Instance.board.ButtonOff();
         lockOn = false;
         player = other;
     }
