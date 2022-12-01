@@ -98,23 +98,27 @@ public class ChessCamera : CameraChange
         return lockOn;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (lockOn)
         {
-            if (frame + speed <= 180)
+            Quaternion oldRot = Camera.main.transform.rotation;
+            Vector3 oldPos = Camera.main.transform.position;
+            if (frame * speed <= 180)
             {
-                Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, cameraPos.rotation, frame / 180f * speed);
-                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraPos.position, frame / 180f * speed);
+                Camera.main.transform.rotation = Quaternion.Lerp(oldRot, cameraPos.rotation, frame / 180f * speed);
+                Camera.main.transform.position = Vector3.Lerp(oldPos, cameraPos.position, frame / 180f * speed);
                 frame++;
             }
         }
         else if (camControl.enabled == false && ended)
         {
-            if (frame + speed <= 180)
+            Quaternion oldRot = Camera.main.transform.rotation;
+            Vector3 oldPos = Camera.main.transform.position;
+            if (frame * speed <= 180)
             {
-                Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, oldCameraRot, frame / 180f * speed);
-                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(player.position.x, oldCameraPos.y, player.position.z), frame / 180f * speed);
+                Camera.main.transform.rotation = Quaternion.Lerp(oldRot, oldCameraRot, frame / 180f * speed);
+                Camera.main.transform.position = Vector3.Lerp(oldPos, new Vector3(player.position.x, oldCameraPos.y, player.position.z), frame / 180f * speed);
                 frame++;
             }
             else
