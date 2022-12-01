@@ -12,10 +12,17 @@ public class ChessPiece : MonoBehaviour
     public bool dropped = false;
     public Vector2 movement;
     public int forward;
+    PlayerInput controls;
     // Start is called before the first frame update
     void Start()
     {
-        
+
+    }
+
+    void Awake()
+    {
+        controls = new PlayerInput();
+        controls.Board.Enable();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -40,6 +47,23 @@ public class ChessPiece : MonoBehaviour
         }
     }
 
+    void OnMouseDown()
+    {
+        if (player == null)
+            player = GameObject.FindWithTag("Player").transform;
+        if (player != null && ChessManager.Instance.board.attached == null && !dropped)// && player.GetComponent<PlayerControl>().CheckPart("arm"))
+        {
+            //foreach (Part part in player.GetComponent<PlayerControl>().GetPartByUsage("usage"))
+            //{
+            //    part.dur -= 100 / 5;
+            //    player.GetComponent<PlayerControl>().UpdateBar(part);
+            //}
+            ChessManager.Instance.board.Attach(this);
+            GetComponent<NavMeshObstacle>().enabled = false;
+            GetComponent<Collider>().enabled = false;
+        }
+    }
+
     public void Release()
     {
         if(player != null)
@@ -53,10 +77,11 @@ public class ChessPiece : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player != null && ChessManager.Instance.board.attached == this)
+        if (ChessManager.Instance.board.attached == this) // player != null && 
         {
-            transform.position = player.position - Quaternion.Euler(0, player.eulerAngles.y - relativeRot, 0) * relativePosition;
-            //transform.position = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
+            //transform.position = player.position - Quaternion.Euler(0, player.eulerAngles.y - relativeRot, 0) * relativePosition;
+            Vector3 newPos = Camera.main.ScreenToWorldPoint(new Vector3(controls.Board.MousePosition.ReadValue<Vector2>().x, controls.Board.MousePosition.ReadValue<Vector2>().y, Camera.main.transform.position.z));
+            transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);
         }
     }
 }

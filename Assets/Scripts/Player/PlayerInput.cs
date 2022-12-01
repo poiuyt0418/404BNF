@@ -78,6 +78,76 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Board"",
+            ""id"": ""8d98d8c7-f989-4107-8f73-93773b937bb8"",
+            ""actions"": [
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""5b56136f-42df-4397-84f7-a3c663d51306"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MouseClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf16cdcf-f077-486a-ab32-4afe9ee27a47"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""6a5dab67-af0d-4918-9899-935654352057"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa540317-4926-4b3b-b089-695d62cc9954"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""352d2823-9dc7-4fcd-88e4-c5ae1899931d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16cf1c89-c9c3-44f5-a5f9-8e58fe02c15b"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -88,6 +158,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // System
         m_System = asset.FindActionMap("System", throwIfNotFound: true);
         m_System_exit = m_System.FindAction("exit", throwIfNotFound: true);
+        // Board
+        m_Board = asset.FindActionMap("Board", throwIfNotFound: true);
+        m_Board_MousePosition = m_Board.FindAction("MousePosition", throwIfNotFound: true);
+        m_Board_MouseClick = m_Board.FindAction("MouseClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -209,6 +283,47 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         }
     }
     public SystemActions @System => new SystemActions(this);
+
+    // Board
+    private readonly InputActionMap m_Board;
+    private IBoardActions m_BoardActionsCallbackInterface;
+    private readonly InputAction m_Board_MousePosition;
+    private readonly InputAction m_Board_MouseClick;
+    public struct BoardActions
+    {
+        private @PlayerInput m_Wrapper;
+        public BoardActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MousePosition => m_Wrapper.m_Board_MousePosition;
+        public InputAction @MouseClick => m_Wrapper.m_Board_MouseClick;
+        public InputActionMap Get() { return m_Wrapper.m_Board; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BoardActions set) { return set.Get(); }
+        public void SetCallbacks(IBoardActions instance)
+        {
+            if (m_Wrapper.m_BoardActionsCallbackInterface != null)
+            {
+                @MousePosition.started -= m_Wrapper.m_BoardActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= m_Wrapper.m_BoardActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= m_Wrapper.m_BoardActionsCallbackInterface.OnMousePosition;
+                @MouseClick.started -= m_Wrapper.m_BoardActionsCallbackInterface.OnMouseClick;
+                @MouseClick.performed -= m_Wrapper.m_BoardActionsCallbackInterface.OnMouseClick;
+                @MouseClick.canceled -= m_Wrapper.m_BoardActionsCallbackInterface.OnMouseClick;
+            }
+            m_Wrapper.m_BoardActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @MousePosition.started += instance.OnMousePosition;
+                @MousePosition.performed += instance.OnMousePosition;
+                @MousePosition.canceled += instance.OnMousePosition;
+                @MouseClick.started += instance.OnMouseClick;
+                @MouseClick.performed += instance.OnMouseClick;
+                @MouseClick.canceled += instance.OnMouseClick;
+            }
+        }
+    }
+    public BoardActions @Board => new BoardActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -216,5 +331,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     public interface ISystemActions
     {
         void OnExit(InputAction.CallbackContext context);
+    }
+    public interface IBoardActions
+    {
+        void OnMousePosition(InputAction.CallbackContext context);
+        void OnMouseClick(InputAction.CallbackContext context);
     }
 }

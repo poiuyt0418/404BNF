@@ -56,9 +56,9 @@ public class CameraChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(lockOn)
+        if (lockOn)
         {
-            if(frame+speed <= 180)
+            if (frame + speed <= 180)
             {
                 Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, cameraPos.rotation, frame / 180f * speed);
                 Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraPos.position, frame / 180f * speed);
@@ -68,15 +68,18 @@ public class CameraChange : MonoBehaviour
             {
                 player.GetComponent<PlayerControl>().MoveEnable();
             }
-        } else if(camControl.enabled == false && ended)
+        }
+        else if (camControl.enabled == false && ended)
         {
-            if(frame+speed <= 180)
+            if (frame + speed <= 180)
             {
                 Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, oldCameraRot, frame / 180f * speed);
                 Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(player.position.x, oldCameraPos.y, player.position.z), frame / 180f * speed);
                 frame++;
-            } else
+            }
+            else
             {
+                player.GetComponent<PlayerControl>().MoveEnable();
                 camControl.enabled = true;
                 ended = false;
             }

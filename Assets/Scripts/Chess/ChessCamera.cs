@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ChessCamera : CameraChange
 {
@@ -41,6 +42,9 @@ public class ChessCamera : CameraChange
             ChessManager.Instance.AddBoard(transform.parent.GetComponent<ChessBoard>());
             frame = 0;
             player = other.transform;
+            other.GetComponent<PlayerControl>().MoveDisable();
+            other.GetComponent<NavMeshAgent>().ResetPath();
+            other.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 
@@ -51,7 +55,16 @@ public class ChessCamera : CameraChange
             StartCoroutine(ChessManager.Instance.board.DoEvents());
             StartCoroutine(ExitBoard(other.transform));
             frame = 0;
+            player.GetComponent<PlayerControl>().MoveEnable();
         }
+    }
+
+    public void RevertCamera()
+    {
+        StartCoroutine(ExitBoard(player.transform));
+        lockOn = false;
+        frame = 0;
+        player.GetComponent<PlayerControl>().MoveEnable();
     }
 
     public IEnumerator ExitBoard(Transform other)
@@ -72,11 +85,39 @@ public class ChessCamera : CameraChange
         {
             yield return new WaitForSeconds(.1f);
         }
+        player.GetComponent<PlayerControl>().MoveEnable();
         Destroy(gameObject);
     }
 
     public bool Entered()
     {
         return lockOn;
+    }
+
+    void Update()
+    {
+        if (lockOn)
+        {
+            if (frame + speed <= 180)
+            {
+                Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, cameraPos.rotation, frame / 180f * speed);
+                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraPos.position, frame / 180f * speed);
+                frame++;
+            }
+        }
+        else if (camControl.enabled == false && ended)
+        {
+            if (frame + speed <= 180)
+            {
+                Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, oldCameraRot, frame / 180f * speed);
+                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(player.position.x, oldCameraPos.y, player.position.z), frame / 180f * speed);
+                frame++;
+            }
+            else
+            {
+                camControl.enabled = true;
+                ended = false;
+            }
+        }
     }
 }

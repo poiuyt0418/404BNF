@@ -38,6 +38,7 @@ public class ChessBoard : MonoBehaviour
     enum ChessEvent { none,run,die };
     Stack<ChessTile> chessEvents = new Stack<ChessTile>();
     Dictionary<Vector2,ChessTile> tiles = new Dictionary<Vector2, ChessTile>();
+    PlayerInput controls;
 
     class ChessTile
     {
@@ -100,6 +101,18 @@ public class ChessBoard : MonoBehaviour
         //tileDepth = Mathf.Abs((rows[0].transform.Find("A").transform.position.z - rows[boardWidth - 1].transform.Find(((char)(65 + boardDepth - 1)).ToString()).transform.position.z) / (boardDepth - 1));
     }
 
+    void Awake()
+    {
+        controls = new PlayerInput();
+        controls.Board.MouseClick.performed += ctx => Drop();
+    }
+
+    public void Exit()
+    {
+        cameraControl.RevertCamera();
+        ChessManager.Instance.RemoveBoard();
+    }
+
     public void Reset()
     {
         tiles = new Dictionary<Vector2, ChessTile>();
@@ -137,6 +150,8 @@ public class ChessBoard : MonoBehaviour
             {
                 resetButton = true;
                 buttonText.text = "Reset";
+                //cameraControl.RevertCamera();
+                //controls.Board.Disable();
                 Release();
                 return;
             }
@@ -185,6 +200,7 @@ public class ChessBoard : MonoBehaviour
         cg.interactable = true;
         canvas.SetActive(false);
         canvas.SetActive(true);
+        controls.Board.Enable();
     }
 
     Vector3 ConvertTileToPos(Vector2 tileVector, ChessPiece piece)
@@ -247,6 +263,7 @@ public class ChessBoard : MonoBehaviour
             int posX = (int)(((attached.transform.position.x - boardFirstTile.x) + .5f) / tileSize.x);
             int posZ = (int)(((attached.transform.position.z - boardFirstTile.z) + .5f) / tileSize.z);
             Vector2 tileVector = new Vector2(posX, posZ);
+            Debug.Log(tileVector);
             if (!tiles.ContainsKey(tileVector))
             {
                 ChessTile tile = new ChessTile();

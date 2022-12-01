@@ -31,7 +31,11 @@ public class ChessManager
         board.Reset();
         board.ResetTileColor();
         board = null;
-        Release();
+        GameObject.FindWithTag("Player").GetComponent<PlayerControl>().MoveEnable();
+        foreach (ChessPiece piece in GetPieces())
+        {
+            GameObject.Destroy(piece.gameObject);
+        }
     }
 
     public bool GameEnabled()
