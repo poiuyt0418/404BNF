@@ -4384,6 +4384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objText: {fileID: 1796787976}
   player: {fileID: 944920411}
+  star: {fileID: 4181146142921086738, guid: 789df60971fbb7d458ee60bf7602fbb7, type: 3}
   levelSelectIndex: 2
   exitRequirement:
   - leg

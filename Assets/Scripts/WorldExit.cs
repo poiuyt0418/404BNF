@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WorldExit : MonoBehaviour
 {
     public TMP_Text objText;
     public PlayerControl player;
     [SerializeField]
+    Image star;
+    [SerializeField]
     int levelSelectIndex; // go by name?
     [SerializeField]
     string[] exitRequirement;
     [SerializeField]
-    float waitTime = 3;
+    float waitTime = 1;
     WaitForSecondsRealtime waitForSecondsRealtime;
     [SerializeField]
     float timeForLevel;
@@ -47,11 +50,11 @@ public class WorldExit : MonoBehaviour
         int stars = Mathf.Clamp((int)(timer / (float)timeForLevel * 3 + 1), 0, 3); // 3 + ((timer > 0) ? 0 : -1) + Object.FindObjectsOfType<WorldQTEManager>()[0].Stars();
         DataManager.gameData.AddStars(levelSelectIndex,stars);
         timer = 0;
-        StartCoroutine(DelayedExit());
+        StartCoroutine(DelayedExit(stars));
 
     }
 
-    private IEnumerator DelayedExit()
+    private IEnumerator DelayedExit(int stars)
     {
         if (waitForSecondsRealtime == null)
         {
@@ -65,8 +68,28 @@ public class WorldExit : MonoBehaviour
         float prevTimeScale = Time.timeScale;
         Time.timeScale = 0;
         yield return waitForSecondsRealtime;
-        Time.timeScale = prevTimeScale;
-        SceneManager.LoadScene(1);
+        switch(stars)
+        {
+            case 3:
+                Instantiate(star, new Vector2(1920 / 2, 1080 / 2), Quaternion.identity, objText.gameObject.transform.parent);
+                waitForSecondsRealtime.waitTime = waitTime;
+                yield return waitForSecondsRealtime;
+                goto case 2;
+            case 2:
+                Instantiate(star, new Vector2(1920 / 4, 1080 / 2), Quaternion.identity, objText.gameObject.transform.parent);
+                waitForSecondsRealtime.waitTime = waitTime;
+                yield return waitForSecondsRealtime;
+                goto case 1;
+            case 1:
+                Instantiate(star, new Vector2(1920 / (1 + 1/3f), 1080 / 2), Quaternion.identity, objText.gameObject.transform.parent);
+                waitForSecondsRealtime.waitTime = waitTime;
+                yield return waitForSecondsRealtime;
+                goto case 0;
+            case 0:
+                Time.timeScale = prevTimeScale;
+                SceneManager.LoadScene(1);
+                break;
+        }
     }
 
     void Update()
