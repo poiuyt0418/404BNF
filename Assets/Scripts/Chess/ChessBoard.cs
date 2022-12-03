@@ -205,7 +205,7 @@ public class ChessBoard : MonoBehaviour
 
     Vector3 ConvertTileToPos(Vector2 tileVector, ChessPiece piece)
     {
-        return new Vector3(boardFirstTile.x + tileVector.x * tileSize.x, boardFirstTile.y + piece.transform.localScale.y, boardFirstTile.z + tileVector.y * tileSize.z);
+        return new Vector3(boardFirstTile.x + tileVector.x * tileSize.x, boardFirstTile.y + piece.GetComponent<Renderer>().bounds.size.y/2, boardFirstTile.z + tileVector.y * tileSize.z);
     }
 
     public IEnumerator DoEvents()
@@ -290,7 +290,8 @@ public class ChessBoard : MonoBehaviour
             attached.Release();
             attached.transform.position = ConvertTileToPos(new Vector2(posX,posZ),attached);
             attached = null;
-            if(chessEvents.Count > 0)
+            Cursor.visible = true;
+            if (chessEvents.Count > 0)
             {
                 buttonText.text = "Execute";
             }
@@ -349,9 +350,10 @@ public class ChessBoard : MonoBehaviour
     {
         attached = p;
         tiles[p.tileVector].piece = null;
-        buttonText.text = "Drop";
-        cg.alpha = 1f;
-        cg.interactable = true;
+        //buttonText.text = "Drop";
+        Cursor.visible = false;
+        //cg.alpha = 1f;
+        //cg.interactable = true;
     }
 
     // Update is called once per frame

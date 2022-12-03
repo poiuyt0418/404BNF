@@ -55,8 +55,8 @@ MonoBehaviour:
   boardDepth: 0
   rows: []
   tilePieces: []
-  black: {fileID: 6543300936837662191, guid: 3be9188f4bfddd84189fe71526b1b59c, type: 3}
-  white: {fileID: 1187795954153223958, guid: 100d4f1d85b48a146a5d42b62f0b43c6, type: 3}
+  black: {fileID: 4328909101701101477, guid: 31e8b704793899146a3c51913ae4f722, type: 3}
+  white: {fileID: 4328909101701101477, guid: f1cff9a2ab6f1264a847132c557d270a, type: 3}
   attached: {fileID: 0}
   coroutines: 0
   tileSize: {x: 0, y: 0, z: 0}
