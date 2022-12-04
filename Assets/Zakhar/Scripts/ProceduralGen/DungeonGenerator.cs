@@ -7,7 +7,7 @@ public class DungeonGenerator : MonoBehaviour
     public class Cell
     {
         public bool visited = false;
-        public bool[] status = new bool[4]; //1-north, 2 - south, 3 - east, 4 - west
+        public bool[] status = new bool[5]; //1-north, 2 - south, 3 - east, 4 - west, 5 - center
     }
 
     [System.Serializable]
@@ -104,8 +104,7 @@ public class DungeonGenerator : MonoBehaviour
                     //int ranRoom = Random.Range(0, rooms.Length);
                     
                     var newRoom = Instantiate(rooms[ranRoom].room, new Vector3(i*offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>(); // roomB.RoomSize
-                    newRoom.UpdateRoom(board [Mathf.FloorToInt(i*dungeonSize.y+j*dungeonSize.x)].status);
-
+                    newRoom.UpdateRoom(board[Mathf.FloorToInt(i * dungeonSize.y + j * dungeonSize.x)].status);
                     newRoom.name += " " + i + "-" +  j;
                 }
             }
