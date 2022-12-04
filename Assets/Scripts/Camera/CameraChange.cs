@@ -9,7 +9,7 @@ public class CameraChange : MonoBehaviour
     protected Transform cameraPos;
     [SerializeField]
     protected float cameraY = 12, speed = 1;
-    protected bool lockOn, ended;
+    public bool lockOn, ended;
     protected Vector3 oldCameraPos;
     protected Quaternion oldCameraRot;
     protected CameraControl camControl;

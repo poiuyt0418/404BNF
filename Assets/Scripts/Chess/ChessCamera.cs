@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class ChessCamera : CameraChange
 {
+    public bool moving;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +39,7 @@ public class ChessCamera : CameraChange
             oldCameraRot = Camera.main.transform.rotation;
             oldCameraPos.y = cameraY;
             lockOn = true;
+            moving = true;
             camControl.enabled = false;
             ended = true;
             ChessManager.Instance.AddBoard(transform.parent.GetComponent<ChessBoard>());
@@ -51,14 +53,14 @@ public class ChessCamera : CameraChange
 
     void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<PlayerControl>() != null)
-        {
-            if(lockOn)
-                StartCoroutine(ChessManager.Instance.board.DoEvents());
-            StartCoroutine(ExitBoard(other.transform));
-            frame = 0;
-            player.GetComponent<PlayerControl>().MoveEnable();
-        }
+        //if (other.GetComponent<PlayerControl>() != null)
+        //{
+        //    if(lockOn)
+        //        StartCoroutine(ChessManager.Instance.board.DoEvents());
+        //    StartCoroutine(ExitBoard(other.transform));
+        //    frame = 0;
+        //    player.GetComponent<PlayerControl>().MoveEnable();
+        //}
     }
 
     public void RevertCamera()
@@ -116,6 +118,7 @@ public class ChessCamera : CameraChange
                 if(frame * speed > 180)
                 {
                     oldRot.Set(0, 0, 0, 0);
+                    moving = false;
                 }
             }
         }

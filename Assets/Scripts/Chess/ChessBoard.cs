@@ -109,6 +109,8 @@ public class ChessBoard : MonoBehaviour
 
     public void Exit()
     {
+        if (cameraControl.moving)
+            return;
         cameraControl.RevertCamera();
         ChessManager.Instance.RemoveBoard();
     }

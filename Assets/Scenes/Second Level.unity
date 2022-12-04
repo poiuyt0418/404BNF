@@ -2842,6 +2842,7 @@ MonoBehaviour:
   - Click on the panel to begin wire puzzle
   - 'Connect the correct wires to the other '
   textSpeed: -1
+  ignoreMove: 1
 --- !u!114 &336777088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4456,6 +4457,8 @@ MonoBehaviour:
   cameraPos: {fileID: 512320293}
   cameraY: 12
   speed: 3
+  lockOn: 0
+  ended: 0
 --- !u!65 &496480345
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4663,6 +4666,7 @@ MonoBehaviour:
   - Left click to interact and move the player.
   - Walk up to objects to begin puzzle.
   textSpeed: -1
+  ignoreMove: 0
 --- !u!114 &510647080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9062,6 +9066,14 @@ PrefabInstance:
       propertyPath: movementControl
       value: 
       objectReference: {fileID: 944920410}
+    - target: {fileID: 4237816329431404988, guid: 1e64bb721079f214298702794a2eba05, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 510647077}
+    - target: {fileID: 4237816329431404988, guid: 1e64bb721079f214298702794a2eba05, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2000331930, guid: 1e64bb721079f214298702794a2eba05, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e64bb721079f214298702794a2eba05, type: 3}
@@ -10586,6 +10598,7 @@ MonoBehaviour:
   lines:
   - Blue tiles move the pieces, green is where you want the pieces to land.
   textSpeed: -1
+  ignoreMove: 1
 --- !u!114 &1359608855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11640,6 +11653,8 @@ MonoBehaviour:
   cameraPos: {fileID: 1571538369}
   cameraY: 12
   speed: 3
+  lockOn: 0
+  ended: 0
 --- !u!65 &1467401992
 BoxCollider:
   m_ObjectHideFlags: 0
