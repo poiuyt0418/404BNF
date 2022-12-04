@@ -906,6 +906,7 @@ MonoBehaviour:
   - Click on the panel to begin wire puzzle
   - 'Connect the correct wires to the other '
   textSpeed: -1
+  ignoreMove: 1
 --- !u!114 &372005009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1746,6 +1747,7 @@ MonoBehaviour:
   lines:
   - 'Move chess piece into the green tiles and execute '
   textSpeed: -1
+  ignoreMove: 1
 --- !u!224 &582885334
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3654,7 +3656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &988862675
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3694,6 +3696,7 @@ MonoBehaviour:
   - Left click to interact and move the player.
   - Walk up to objects to begin puzzle.
   textSpeed: -1
+  ignoreMove: 0
 --- !u!114 &988862677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3896,7 +3899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 249093948387895635, guid: 1e64bb721079f214298702794a2eba05, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 249093948387895635, guid: 1e64bb721079f214298702794a2eba05, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3954,6 +3957,18 @@ PrefabInstance:
       propertyPath: body
       value: 
       objectReference: {fileID: 1361041835}
+    - target: {fileID: 249093948387895645, guid: 1e64bb721079f214298702794a2eba05, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237816329431404988, guid: 1e64bb721079f214298702794a2eba05, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 988862674}
+    - target: {fileID: 4237816329431404988, guid: 1e64bb721079f214298702794a2eba05, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2000331930, guid: 1e64bb721079f214298702794a2eba05, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e64bb721079f214298702794a2eba05, type: 3}
@@ -5024,7 +5039,7 @@ RectTransform:
   - {fileID: 372005007}
   - {fileID: 582885334}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5276,7 +5291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraPos: {fileID: 570683231}
   cameraY: 12
-  speed: 1
+  speed: 3
 --- !u!1001 &1317434534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9069,7 +9084,6 @@ GameObject:
   - component: {fileID: 2092375450}
   - component: {fileID: 2092375449}
   - component: {fileID: 2092375448}
-  - component: {fileID: 2092375447}
   - component: {fileID: 2092375446}
   m_Layer: 0
   m_Name: ChessTrigger
@@ -9092,21 +9106,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: {fileID: 582885333}
   destroy: 1
---- !u!114 &2092375447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2092375445}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33019e67a05a7044d98b64744fc5c6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraPos: {fileID: 143770692}
-  cameraY: 12
-  speed: 1
 --- !u!65 &2092375448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9218,8 +9217,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.2647698, y: 1, z: 1.7494242}
+  m_Center: {x: 0.38244975, y: 0, z: -0.3747117}
 --- !u!23 &2096666086
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9300,7 +9299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraPos: {fileID: 933650061}
   cameraY: 12
-  speed: 1
+  speed: 3
 --- !u!114 &2096666090
 MonoBehaviour:
   m_ObjectHideFlags: 0

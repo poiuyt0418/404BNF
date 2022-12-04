@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 249093948387895634}
   - component: {fileID: 249093948387895645}
   - component: {fileID: 7370117794243796123}
+  - component: {fileID: 4237816329431404988}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Player
@@ -130,11 +131,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   y: 0
+  mouseToWorld: {x: 0, y: 0, z: 0}
   speed: 5
   movementControl: {fileID: 0}
+  parts:
+  - type: 
+    durability: 0
+    speedChange: 5
+    durabilityLoss: 0
+  - type: 
+    durability: 0
+    speedChange: 5
+    durabilityLoss: 0
+  - type: 
+    durability: 0
+    speedChange: 5
+    durabilityLoss: 0
+  partIndexes:
+  - body
+  - arm
+  - leg
   body: {fileID: 0}
   arm: {fileID: 0}
   leg: {fileID: 0}
+  movementQueued: 0
 --- !u!195 &7370117794243796123
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -146,7 +166,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 5
-  m_Acceleration: 10
+  m_Acceleration: 60
   avoidancePriority: 50
   m_AngularSpeed: 360
   m_StoppingDistance: 0
@@ -157,3 +177,16 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4237816329431404988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249093948387895639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a646e782ab4204094680298639d5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 0}

@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour
     public float speed = 5;
     //public Rigidbody rb;
     public NavMeshAgent movementControl;
-    PlayerInput controls;
+    public PlayerInput controls;
     [SerializeField]
     Part[] parts = new Part[3];
     public string[] partIndexes = { "body", "arm", "leg" };
@@ -40,6 +40,7 @@ public class PlayerControl : MonoBehaviour
         controls.System.exit.performed += ctx => Application.Quit();
         controls.System.Enable();
         MoveEnable();
+        GetComponent<StartDialogue>().enabled = true;
     }
 
     public void MoveEnable()

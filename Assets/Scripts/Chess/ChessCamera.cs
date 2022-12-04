@@ -27,11 +27,12 @@ public class ChessCamera : CameraChange
     public override void Awake()
     {
         base.Awake();
+        speed = 3;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerControl>() != null)
+        if (other.GetComponent<PlayerControl>() != null && !ended)
         {
             oldCameraPos = Camera.main.transform.position;
             oldCameraRot = Camera.main.transform.rotation;
@@ -102,19 +103,29 @@ public class ChessCamera : CameraChange
     {
         if (lockOn)
         {
-            Quaternion oldRot = Camera.main.transform.rotation;
-            Vector3 oldPos = Camera.main.transform.position;
+            if (oldRot.w + oldRot.x + oldRot.y + oldRot.z == 0)
+            {
+                oldRot = Camera.main.transform.rotation;
+                oldPos = Camera.main.transform.position;
+            }
             if (frame * speed <= 180)
             {
                 Camera.main.transform.rotation = Quaternion.Lerp(oldRot, cameraPos.rotation, frame / 180f * speed);
                 Camera.main.transform.position = Vector3.Lerp(oldPos, cameraPos.position, frame / 180f * speed);
                 frame++;
+                if(frame * speed > 180)
+                {
+                    oldRot.Set(0, 0, 0, 0);
+                }
             }
         }
         else if (camControl.enabled == false && ended)
         {
-            Quaternion oldRot = Camera.main.transform.rotation;
-            Vector3 oldPos = Camera.main.transform.position;
+            if (oldRot.w + oldRot.x + oldRot.y + oldRot.z == 0)
+            {
+                oldRot = Camera.main.transform.rotation;
+                oldPos = Camera.main.transform.position;
+            }
             if (frame * speed <= 180)
             {
                 Camera.main.transform.rotation = Quaternion.Lerp(oldRot, oldCameraRot, frame / 180f * speed);
@@ -123,6 +134,7 @@ public class ChessCamera : CameraChange
             }
             else
             {
+                oldRot.Set(0, 0, 0, 0);
                 camControl.enabled = true;
                 ended = false;
             }

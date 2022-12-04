@@ -9,24 +9,24 @@ public class Dialogue_Script : MonoBehaviour
     public TextMeshProUGUI textComponent;
     public string[] lines;
     public float textSpeed;
+    public bool ignoreMove = true;
     PlayerControl player;
-
     private int index;
 
     // Start is called before the first frame update
-    void OnAwake()
+    void Awake()
     {
-        player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerControl>();
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
         textComponent.text = string.Empty;
         StartDialogue();
     }
 
-    void OnEnable()
-    {
-        player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerControl>();
-        textComponent.text = string.Empty;
-        StartDialogue();
-    }
+    //void OnEnable()
+    //{
+    //    player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+    //    textComponent.text = string.Empty;
+    //    StartDialogue();
+    //}
 
     public void Reset()
     {
@@ -53,6 +53,10 @@ public class Dialogue_Script : MonoBehaviour
     void StartDialogue()
     {
         index = 0;
+        if (player != null)
+        {
+            player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+        }
         player.MoveDisable();
         StartCoroutine(TypeLine());
     }
@@ -71,7 +75,7 @@ public class Dialogue_Script : MonoBehaviour
     {
         if (index < lines.Length -1)
         {
-            if(player.MoveEnabled())
+            if(player != null && player.MoveEnabled())
             {
                 player.MoveDisable();
             }
@@ -81,7 +85,10 @@ public class Dialogue_Script : MonoBehaviour
         }
         else
         {
-            player.MoveEnable();
+            if(!ignoreMove)
+            {
+                player.MoveEnable();
+            }
             gameObject.SetActive(false);
         }
     

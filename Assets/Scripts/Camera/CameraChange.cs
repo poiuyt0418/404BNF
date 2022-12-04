@@ -8,13 +8,15 @@ public class CameraChange : MonoBehaviour
     [SerializeField]
     protected Transform cameraPos;
     [SerializeField]
-    protected float cameraY = 12, speed = 3;
+    protected float cameraY = 12, speed = 1;
     protected bool lockOn, ended;
     protected Vector3 oldCameraPos;
     protected Quaternion oldCameraRot;
     protected CameraControl camControl;
     protected Transform player;
     protected float frame;
+    protected Quaternion oldRot;
+    protected Vector3 oldPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,7 @@ public class CameraChange : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerControl>() != null)
+        if (other.GetComponent<PlayerControl>() != null && !ended)
         {
             player = other.transform;
             other.GetComponent<PlayerControl>().MoveDisable();
@@ -40,6 +42,7 @@ public class CameraChange : MonoBehaviour
             ended = true;
             frame = 0;
             other.GetComponent<NavMeshAgent>().ResetPath();
+            other.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 
@@ -60,8 +63,11 @@ public class CameraChange : MonoBehaviour
     {
         if (lockOn)
         {
-            Quaternion oldRot = Camera.main.transform.rotation;
-            Vector3 oldPos = Camera.main.transform.position;
+            if (oldRot.w + oldRot.x + oldRot.y + oldRot.z == 0)
+            {
+                oldRot = Camera.main.transform.rotation;
+                oldPos = Camera.main.transform.position;
+            }
             if (frame * speed <= 180)
             {
                 Camera.main.transform.rotation = Quaternion.Lerp(oldRot, cameraPos.rotation, frame / 180f * speed);
@@ -70,13 +76,17 @@ public class CameraChange : MonoBehaviour
             }
             else
             {
+                oldRot.Set(0, 0, 0, 0);
                 player.GetComponent<PlayerControl>().MoveEnable();
             }
         }
         else if (camControl.enabled == false && ended)
         {
-            Quaternion oldRot = Camera.main.transform.rotation;
-            Vector3 oldPos = Camera.main.transform.position;
+            if (oldRot.w + oldRot.x + oldRot.y + oldRot.z == 0)
+            {
+                oldRot = Camera.main.transform.rotation;
+                oldPos = Camera.main.transform.position;
+            }
             if (frame * speed <= 180)
             {
                 Camera.main.transform.rotation = Quaternion.Lerp(oldRot, oldCameraRot, frame / 180f * speed);
@@ -85,6 +95,7 @@ public class CameraChange : MonoBehaviour
             }
             else
             {
+                oldRot.Set(0, 0, 0, 0);
                 player.GetComponent<PlayerControl>().MoveEnable();
                 camControl.enabled = true;
                 ended = false;
