@@ -39,7 +39,6 @@ public class CameraChange : MonoBehaviour
             camControl.enabled = false;
             ended = true;
             frame = 0;
-            other.GetComponent<PlayerControl>().MoveDisable();
             other.GetComponent<NavMeshAgent>().ResetPath();
         }
     }
