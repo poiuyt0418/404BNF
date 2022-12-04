@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class ChessCamera : CameraChange
 {
     public bool moving;
+    public bool realBoard;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,32 +36,36 @@ public class ChessCamera : CameraChange
     {
         if (other.GetComponent<PlayerControl>() != null && !ended)
         {
-            oldCameraPos = Camera.main.transform.position;
-            oldCameraRot = Camera.main.transform.rotation;
-            oldCameraPos.y = cameraY;
-            lockOn = true;
-            moving = true;
-            camControl.enabled = false;
-            ended = true;
             ChessManager.Instance.AddBoard(transform.parent.GetComponent<ChessBoard>());
-            frame = 0;
-            player = other.transform;
-            other.GetComponent<PlayerControl>().MoveDisable();
-            other.GetComponent<NavMeshAgent>().ResetPath();
-            other.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            if(realBoard)
+            {
+                oldCameraPos = Camera.main.transform.position;
+                oldCameraRot = Camera.main.transform.rotation;
+                oldCameraPos.y = cameraY;
+                lockOn = true;
+                moving = true;
+                camControl.enabled = false;
+                ended = true;
+                frame = 0;
+                player = other.transform;
+                other.GetComponent<PlayerControl>().MoveDisable();
+                other.GetComponent<NavMeshAgent>().ResetPath();
+                other.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        //if (other.GetComponent<PlayerControl>() != null)
-        //{
-        //    if(lockOn)
-        //        StartCoroutine(ChessManager.Instance.board.DoEvents());
-        //    StartCoroutine(ExitBoard(other.transform));
-        //    frame = 0;
-        //    player.GetComponent<PlayerControl>().MoveEnable();
-        //}
+        if (other.GetComponent<PlayerControl>() != null && !realBoard)
+        {
+            //    if(lockOn)
+            //        StartCoroutine(ChessManager.Instance.board.DoEvents());
+            //    StartCoroutine(ExitBoard(other.transform));
+            //    frame = 0;
+            //    player.GetComponent<PlayerControl>().MoveEnable();
+            ChessManager.Instance.RemoveBoard();
+        }
     }
 
     public void RevertCamera()

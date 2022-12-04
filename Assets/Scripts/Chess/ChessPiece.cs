@@ -51,13 +51,13 @@ public class ChessPiece : MonoBehaviour
     {
         if (player == null)
             player = GameObject.FindWithTag("Player").transform;
-        if (player != null && ChessManager.Instance.board.attached == null && !dropped)// && player.GetComponent<PlayerControl>().CheckPart("arm"))
+        if (player != null && ChessManager.Instance.board.attached == null && !dropped && player.GetComponent<PlayerControl>().CheckPart("arm"))
         {
-            //foreach (Part part in player.GetComponent<PlayerControl>().GetPartByUsage("usage"))
-            //{
-            //    part.dur -= 100 / 5;
-            //    player.GetComponent<PlayerControl>().UpdateBar(part);
-            //}
+            foreach (Part part in player.GetComponent<PlayerControl>().GetPartByUsage("usage"))
+            {
+                part.dur -= 100 / 5;
+                player.GetComponent<PlayerControl>().UpdateBar(part);
+            }
             ChessManager.Instance.board.Attach(this);
             GetComponent<NavMeshObstacle>().enabled = false;
             GetComponent<Collider>().enabled = false;

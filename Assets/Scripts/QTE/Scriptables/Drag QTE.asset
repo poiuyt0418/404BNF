@@ -18,4 +18,4 @@ MonoBehaviour:
   qteDuration: 5
   holdDuration: 0
   xy: {x: 2, y: -1}
-  qteScreenSpace: {fileID: 11400000, guid: c682e0a317479264a933946926f29812, type: 2}
+  qteScreenSpace: {fileID: 11400000, guid: 3a946169c3e782b429280cb4920f4e10, type: 2}

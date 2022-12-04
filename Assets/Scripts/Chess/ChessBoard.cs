@@ -6,6 +6,8 @@ using TMPro;
 public class ChessBoard : MonoBehaviour
 {
     [SerializeField]
+    bool realBoard = true;
+    [SerializeField]
     CanvasGroup cg;
     [SerializeField]
     GameObject canvas;
@@ -95,6 +97,7 @@ public class ChessBoard : MonoBehaviour
         cameraControl = go.AddComponent<ChessCamera>();
         go.transform.parent = transform;
         cameraControl.SetCollider(boardWidth, boardDepth, tileSize);
+        cameraControl.realBoard = realBoard;
         //boardWidth = rows.Length;
         //boardDepth = rows[0].transform.childCount;
         //tileWidth = Mathf.Abs((rows[0].transform.Find("A").transform.position.x - rows[boardWidth - 1].transform.Find(((char)(65 + boardDepth - 1)).ToString()).transform.position.x) / (boardWidth - 1));
