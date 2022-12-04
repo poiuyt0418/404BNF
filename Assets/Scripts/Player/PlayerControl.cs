@@ -37,10 +37,16 @@ public class PlayerControl : MonoBehaviour
     {
         controls = new PlayerInput();
         controls.Player.move.performed += ctx => ClickToMove();
-        controls.System.exit.performed += ctx => Application.Quit();
+        controls.System.exit.performed += ctx => Exit();
         controls.System.Enable();
         MoveEnable();
         GetComponent<StartDialogue>().enabled = true;
+    }
+
+    void Exit()
+    {
+        DataManager.WriteFile();
+        Application.Quit();
     }
 
     public void MoveEnable()

@@ -49,6 +49,7 @@ public class WorldExit : MonoBehaviour
         Debug.Log(timer / (float)timeForLevel);
         int stars = Mathf.Clamp((int)(timer / (float)timeForLevel * 3 + 1), 0, 3); // 3 + ((timer > 0) ? 0 : -1) + Object.FindObjectsOfType<WorldQTEManager>()[0].Stars();
         DataManager.gameData.AddStars(levelSelectIndex,stars);
+        DataManager.WriteFile();
         timer = 0;
         StartCoroutine(DelayedExit(stars));
 
