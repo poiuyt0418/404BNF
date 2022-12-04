@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CameraChange : MonoBehaviour
 {
@@ -38,6 +39,8 @@ public class CameraChange : MonoBehaviour
             camControl.enabled = false;
             ended = true;
             frame = 0;
+            other.GetComponent<PlayerControl>().MoveDisable();
+            other.GetComponent<NavMeshAgent>().ResetPath();
         }
     }
 

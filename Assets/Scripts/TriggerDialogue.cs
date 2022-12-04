@@ -6,6 +6,9 @@ public class TriggerDialogue : MonoBehaviour
 {
     [SerializeField]
     Dialogue_Script dialogue;
+    [SerializeField]
+    bool destroy;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +20,9 @@ public class TriggerDialogue : MonoBehaviour
         if (other.GetComponent<PlayerControl>() != null)
         {
             dialogue.gameObject.SetActive(true);
-            Destroy(this);
+            dialogue.Reset();
+            if(destroy)
+                Destroy(this);
         }
     }
 

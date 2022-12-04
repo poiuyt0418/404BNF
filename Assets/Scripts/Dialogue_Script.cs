@@ -14,11 +14,23 @@ public class Dialogue_Script : MonoBehaviour
     private int index;
 
     // Start is called before the first frame update
-    void Start()
+    void OnAwake()
     {
         player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerControl>();
         textComponent.text = string.Empty;
         StartDialogue();
+    }
+
+    void OnEnable()
+    {
+        player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerControl>();
+        textComponent.text = string.Empty;
+        StartDialogue();
+    }
+
+    public void Reset()
+    {
+        //
     }
 
     // Update is called once per frame
