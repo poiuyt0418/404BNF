@@ -34,7 +34,7 @@ public class ChessCamera : CameraChange
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerControl>() != null && !ended)
+        if (other.GetComponent<PlayerControl>() != null && !ended && !camControl.changing)
         {
             ChessManager.Instance.AddBoard(transform.parent.GetComponent<ChessBoard>());
             if(realBoard)
@@ -48,6 +48,7 @@ public class ChessCamera : CameraChange
                 ended = true;
                 frame = 0;
                 player = other.transform;
+                camControl.changing = true;
                 other.GetComponent<PlayerControl>().MoveDisable();
                 other.GetComponent<NavMeshAgent>().ResetPath();
                 other.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -144,6 +145,7 @@ public class ChessCamera : CameraChange
             {
                 oldRot.Set(0, 0, 0, 0);
                 camControl.enabled = true;
+                camControl.changing = false;
                 ended = false;
             }
         }

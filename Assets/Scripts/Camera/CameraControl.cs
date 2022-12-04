@@ -8,6 +8,7 @@ public class CameraControl : MonoBehaviour
     float distanceFromCenter, cameraSpeed, cameraY = 12;
     [SerializeField]
     Transform player;
+    public bool changing;
     // Start is called before the first frame update
     void Start()
     {

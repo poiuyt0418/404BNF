@@ -30,7 +30,7 @@ public class CameraChange : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerControl>() != null && !ended)
+        if (other.GetComponent<PlayerControl>() != null && !ended && !camControl.changing)
         {
             player = other.transform;
             other.GetComponent<PlayerControl>().MoveDisable();
@@ -43,6 +43,7 @@ public class CameraChange : MonoBehaviour
             frame = 0;
             other.GetComponent<NavMeshAgent>().ResetPath();
             other.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            camControl.changing = true;
         }
     }
 
@@ -98,6 +99,7 @@ public class CameraChange : MonoBehaviour
                 oldRot.Set(0, 0, 0, 0);
                 player.GetComponent<PlayerControl>().MoveEnable();
                 camControl.enabled = true;
+                camControl.changing = false;
                 ended = false;
             }
         }
