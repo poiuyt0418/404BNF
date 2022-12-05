@@ -20,6 +20,12 @@ public class PauseMenu : SceneTransition
         Time.timeScale = 1f;
     }
 
+    public void Restart()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void Home(int sceneID)
     {
         Time.timeScale = 1f;
