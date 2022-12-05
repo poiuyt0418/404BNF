@@ -1195,8 +1195,6 @@ MonoBehaviour:
   levelSelectIndex: 0
   exitRequirement:
   - arm
-  - leg
-  - body
   waitTime: 3
   timeForLevel: 180
 --- !u!1 &4336694627877984623
