@@ -24,36 +24,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Third Level.unity
     guid: e51247a590a4ab24da563cfb3f966010
   - enabled: 1
-    path: Assets/Scenes/EndlessMode.unity
-    guid: 5c866c128e0ccd0419d7db2646a5e30f
-  - enabled: 1
-    path: Assets/Scenes/EndleeModeLevels/Variant1.unity
-    guid: 42d0ebe7323429f4a90f92a1858a9072
-  - enabled: 1
-    path: Assets/Scenes/EndleeModeLevels/Variant2.unity
-    guid: 01b9fadd5ea286e49b7adbd8aed835bd
-  - enabled: 1
-    path: Assets/Scenes/EndleeModeLevels/Variant3.unity
-    guid: 6e8feaf24896001489b99f666732d36e
-  - enabled: 1
-    path: Assets/Scenes/EndleeModeLevels/Variant4.unity
-    guid: ab7233c6b83e1014699c8d511d3bec87
-  - enabled: 1
-    path: Assets/Scenes/EndleeModeLevels/Variant5.unity
-    guid: 5634c380849e01e43a98053b54e9e723
-  - enabled: 1
-    path: Assets/Scenes/EndleeModeLevels/Variant6.unity
-    guid: 9de2825989ea36e45ab4b23758143a7d
-  - enabled: 1
-    path: Assets/Scenes/EndleeModeLevels/Variant7.unity
-    guid: 18e4b4bde3e7ad4448442809094fe220
-  - enabled: 1
-    path: Assets/Scenes/EndleeModeLevels/Variant8.unity
-    guid: ab8278225679ebd4f89e97f053474dae
-  - enabled: 1
-    path: Assets/Scenes/EndleeModeLevels/Variant9.unity
-    guid: 9f4fef2bb5a970b4eb4ee028e5542b38
-  - enabled: 1
-    path: Assets/Scenes/EndleeModeLevels/Variant10.unity
-    guid: 9d369af68af481543b601a2391763f44
+    path: Assets/Scenes/EndleeModeLevels/EndMode.unity
+    guid: 658af6184ee17d14c940d11bbeeb56b8
   m_configObjects: {}
