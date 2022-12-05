@@ -143,6 +143,7 @@ public class ChessBoard : MonoBehaviour
         if (solved)
         {
             ButtonOff();
+            ChessManager.Instance.player.GetComponent<PlayerControl>().MoveEnabled();
             return;
         }
         if (attached != null)
