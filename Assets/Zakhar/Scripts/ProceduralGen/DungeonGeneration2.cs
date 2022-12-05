@@ -73,6 +73,7 @@ public class DungeonGeneration2 : MonoBehaviour
     {
         for (int i = 0; i < roomsNumber; i++)
         {
+            //rooms[i].Hand = true;
 
             int ranRoom = -1;
             List<int> aRooms = new List<int>();
@@ -94,6 +95,7 @@ public class DungeonGeneration2 : MonoBehaviour
                 { 
                     aRooms.Add(j);
                 }
+                //rooms[j].Hand = true;
             }
 
             if (ranRoom == -1 )
