@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class WorldExit : MonoBehaviour
 {
     public TMP_Text objText;
-    public PlayerControl player;
+    PlayerControl player;
     [SerializeField]
     Image star;
     [SerializeField]
@@ -26,6 +26,7 @@ public class WorldExit : MonoBehaviour
     void Start()
     {
         timer = timeForLevel;
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
     }
 
     // Update is called once per frame
