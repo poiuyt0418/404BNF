@@ -15,14 +15,26 @@ public class DungeonGeneration2 : MonoBehaviour
     {
         public GameObject room;
         public bool center;
-        public bool Hand;
-        public bool Body;
-        public bool Legs;
+        public bool hand;
+        public bool body;
+        public bool legs;
         public int SpawnProbability()
         {
             if (center)
             {
                 return 2;
+            }
+            else if (hand)
+            {
+                return 3;
+            }
+            else if (body)
+            {
+                return 4;
+            }
+            else if(legs)
+            {
+                return 5;
             }
             else
             {
@@ -55,6 +67,9 @@ public class DungeonGeneration2 : MonoBehaviour
     private bool westCheck = false;
     private bool eastCheck = false;
     private bool centerCheck = false;
+    private bool handCheck = false;
+    private bool bodyCheck = false;
+    private bool legsCheck = false;
 
     private Quaternion rotationCheck;
 
@@ -76,26 +91,53 @@ public class DungeonGeneration2 : MonoBehaviour
             //rooms[i].Hand = true;
 
             int ranRoom = -1;
+            int handRooms = -1;
             List<int> aRooms = new List<int>();
+            List<int> hRooms = new List<int>();
             for (int j=0; j < rooms.Length; j++)
             {
+
                 int prob = rooms[j].SpawnProbability();
                 //switch(prob) case 4: case 3: ...
-                if (prob == 2)
+                switch (prob)
                 {
-                    if (!centerCheck)
-                    {
-                        ranRoom = j;
-                        randomPosition = Center;
-                        centerCheck = true;
-                    }
+                    case 2:
+                        if (centerCheck == false)
+                        {
+                            ranRoom = j;
+                            randomPosition = Center;
+                            centerCheck = true;
+                            break;
+                        }
+                        break;
+                    case 3:
+                        if (!handCheck)
+                        {
+                            hRooms.Add(j);
+                            handCheck = true;
+                            break;
+                        }
+                        break;
+                    case 4:
+                        if (!bodyCheck)
+                        {
+                            ranRoom = j;
+                            bodyCheck = true;
+                            break;
+                        }
+                        break;
+                    case 5:
+                        if (!legsCheck)
+                        {
+                            ranRoom = j;
+                            legsCheck = true;
+                            break;
+                        }
+                        break;
+                    default:
+                        aRooms.Add(j);
+                        break;
                 }
-
-                else if (prob == 1)
-                { 
-                    aRooms.Add(j);
-                }
-                //rooms[j].Hand = true;
             }
 
             if (ranRoom == -1 )
@@ -109,6 +151,7 @@ public class DungeonGeneration2 : MonoBehaviour
                     ranRoom = 0;
                 }
             }
+
             var newRoom = Instantiate(rooms[ranRoom].room, randomPosition, rotationCheck);
             
             newRoom.name += " " + i + "-" + i;// for editor purposes
@@ -162,3 +205,46 @@ public class DungeonGeneration2 : MonoBehaviour
             }
     }
 }
+
+
+
+
+
+
+
+
+
+//if (prob == 2)
+//{
+//    if (!centerCheck)
+//    {
+//        ranRoom = j;
+//        randomPosition = Center;
+//        centerCheck = true;
+//        Debug.Log("Center");
+//    }
+//}
+//else if (prob == 3)
+//{
+//    if(!handCheck && centerCheck) 
+//    {
+//        ranRoom= j;
+//        handCheck = true;
+//        Debug.Log("Hand");
+//    }
+//}
+//else if (prob == 4)
+//{
+//    if(!bodyCheck && centerCheck)
+//    {
+//        ranRoom= j;
+//        bodyCheck = true;
+//        Debug.Log("Body");
+//    }
+//}    
+//else if (prob == 1)
+//{
+//    aRooms.Add(j);
+//    Debug.Log("Nothing");
+//}
+//rooms[j].hand = true;

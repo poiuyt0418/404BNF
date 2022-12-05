@@ -15,7 +15,7 @@ public class GameModeSelect : MonoBehaviour
 
     public void PlayEndless()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + Random.Range(6, 15));
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 5);
     }
 
     public void PlayThird()
