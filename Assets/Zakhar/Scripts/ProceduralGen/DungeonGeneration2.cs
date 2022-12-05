@@ -15,6 +15,9 @@ public class DungeonGeneration2 : MonoBehaviour
     {
         public GameObject room;
         public bool center;
+        public bool Hand;
+        public bool Body;
+        public bool Legs;
         public int SpawnProbability()
         {
             if (center)
@@ -54,6 +57,9 @@ public class DungeonGeneration2 : MonoBehaviour
     private bool centerCheck = false;
 
     private Quaternion rotationCheck;
+
+    [SerializeField]
+    private int roomsNumber = 5;
     
 
     void Start()
@@ -65,7 +71,7 @@ public class DungeonGeneration2 : MonoBehaviour
 
     void GenerateDungeon()
     {
-        for (int i = 0; i < rooms.Length; i++)
+        for (int i = 0; i < roomsNumber; i++)
         {
 
             int ranRoom = -1;
@@ -73,6 +79,7 @@ public class DungeonGeneration2 : MonoBehaviour
             for (int j=0; j < rooms.Length; j++)
             {
                 int prob = rooms[j].SpawnProbability();
+                //switch(prob) case 4: case 3: ...
                 if (prob == 2)
                 {
                     if (!centerCheck)
@@ -82,6 +89,7 @@ public class DungeonGeneration2 : MonoBehaviour
                         centerCheck = true;
                     }
                 }
+
                 else if (prob == 1)
                 { 
                     aRooms.Add(j);
@@ -116,7 +124,7 @@ public class DungeonGeneration2 : MonoBehaviour
                     if(!northCheck)
                     { 
                         randomPosition = North;
-                        rotationCheck = new Quaternion(0, 1f, 0, 1f);
+                        rotationCheck = new Quaternion(0, -1f, 0, 1f);
                         northCheck = true;
                     }
                     break;
@@ -125,7 +133,7 @@ public class DungeonGeneration2 : MonoBehaviour
                     if (!southCheck)
                     {
                         randomPosition = South;
-                        rotationCheck = new Quaternion(0, -1.0f, 0, 1f);
+                        rotationCheck = new Quaternion(0, 1.0f, 0, 1f);
                         southCheck = true;
                     }
                     break;

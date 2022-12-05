@@ -104,7 +104,7 @@ public class DungeonGenerator : MonoBehaviour
                     //int ranRoom = Random.Range(0, rooms.Length);
                     
                     var newRoom = Instantiate(rooms[ranRoom].room, new Vector3(i*offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>(); // roomB.RoomSize
-                    newRoom.UpdateRoom(board[Mathf.FloorToInt(i * dungeonSize.y + j * dungeonSize.x)].status);
+                    newRoom.UpdateRoom(board [Mathf.FloorToInt(i*dungeonSize.y+j*dungeonSize.x)].status);
                     newRoom.name += " " + i + "-" +  j;
                 }
             }
